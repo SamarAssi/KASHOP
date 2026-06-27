@@ -1,8 +1,11 @@
 
 
 
+using System.Globalization;
 using KASHOP.DAL;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Localization;
 
 namespace KASHOP.PL;
 
@@ -20,10 +23,30 @@ public class Program
 
         builder.Services.AddDbContext<ApplicationDbContext>(options =>
         {
-            options.UseSqlServer("Connection String");
+            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+        });
+
+        builder.Services.AddLocalization(options => options.ResourcesPath = "");
+
+        const string defaultCulture = "en";
+        var supportedCultures = new[]
+        {
+            new CultureInfo(defaultCulture),
+            new CultureInfo("ar")
+        };
+
+        builder.Services.Configure<RequestLocalizationOptions>(options =>
+        {
+            options.DefaultRequestCulture = new RequestCulture(defaultCulture);
+            options.SupportedCultures = supportedCultures;
+            options.SupportedUICultures = supportedCultures;
+            options.RequestCultureProviders.Clear();
+            options.RequestCultureProviders.Add(new AcceptLanguageHeaderRequestCultureProvider());
         });
 
         var app = builder.Build();
+
+        app.UseRequestLocalization(app.Services.GetRequiredService<IOptions<RequestLocalizationOptions>>().Value);
 
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())

@@ -1,0 +1,15 @@
+/Users/samarassi/Desktop/BackendDevelopmentCourse/KASHOP/KASHOP.DAL/bin/Debug/net9.0/KASHOP.DAL.deps.json
+/Users/samarassi/Desktop/BackendDevelopmentCourse/KASHOP/KASHOP.DAL/bin/Debug/net9.0/KASHOP.DAL.runtimeconfig.json
+/Users/samarassi/Desktop/BackendDevelopmentCourse/KASHOP/KASHOP.DAL/bin/Debug/net9.0/KASHOP.DAL.dll
+/Users/samarassi/Desktop/BackendDevelopmentCourse/KASHOP/KASHOP.DAL/bin/Debug/net9.0/KASHOP.DAL.pdb
+/Users/samarassi/Desktop/BackendDevelopmentCourse/KASHOP/KASHOP.DAL/obj/Debug/net9.0/KASHOP.DAL.csproj.AssemblyReference.cache
+/Users/samarassi/Desktop/BackendDevelopmentCourse/KASHOP/KASHOP.DAL/obj/Debug/net9.0/KASHOP.DAL.GeneratedMSBuildEditorConfig.editorconfig
+/Users/samarassi/Desktop/BackendDevelopmentCourse/KASHOP/KASHOP.DAL/obj/Debug/net9.0/KASHOP.DAL.AssemblyInfoInputs.cache
+/Users/samarassi/Desktop/BackendDevelopmentCourse/KASHOP/KASHOP.DAL/obj/Debug/net9.0/KASHOP.DAL.AssemblyInfo.cs
+/Users/samarassi/Desktop/BackendDevelopmentCourse/KASHOP/KASHOP.DAL/obj/Debug/net9.0/KASHOP.DAL.csproj.CoreCompileInputs.cache
+/Users/samarassi/Desktop/BackendDevelopmentCourse/KASHOP/KASHOP.DAL/obj/Debug/net9.0/KASHOP.DAL.sourcelink.json
+/Users/samarassi/Desktop/BackendDevelopmentCourse/KASHOP/KASHOP.DAL/obj/Debug/net9.0/KASHOP.DAL.dll
+/Users/samarassi/Desktop/BackendDevelopmentCourse/KASHOP/KASHOP.DAL/obj/Debug/net9.0/refint/KASHOP.DAL.dll
+/Users/samarassi/Desktop/BackendDevelopmentCourse/KASHOP/KASHOP.DAL/obj/Debug/net9.0/KASHOP.DAL.pdb
+/Users/samarassi/Desktop/BackendDevelopmentCourse/KASHOP/KASHOP.DAL/obj/Debug/net9.0/KASHOP.DAL.genruntimeconfig.cache
+/Users/samarassi/Desktop/BackendDevelopmentCourse/KASHOP/KASHOP.DAL/obj/Debug/net9.0/ref/KASHOP.DAL.dll
