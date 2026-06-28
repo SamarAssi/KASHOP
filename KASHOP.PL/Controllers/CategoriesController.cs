@@ -3,6 +3,7 @@ using KASHOP.PL;
 using Mapster;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 
 namespace MyApp.Namespace
@@ -26,7 +27,14 @@ namespace MyApp.Namespace
         [HttpGet]
         public IActionResult Index()
         {
-            return Ok(_localizer["Success"].Value);
+            var categories = _context.Categories
+                .Include(category => category.Translations)
+                .AsNoTracking()
+                .ToList();
+
+            var response = categories.Adapt<List<CategoryResponse>>();
+
+            return Ok(new { _localizer["Success"].Value, response });
         }
 
         [HttpPost]
