@@ -1,12 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "dIs5Gy0hlwE=",
+  "dgSpecHash": "V6VKUpafUvA=",
   "success": true,
   "projectFilePath": "/Users/samarassi/Desktop/BackendDevelopmentCourse/KASHOP/KASHOP.PL/KASHOP.PL.csproj",
   "expectedPackageFiles": [
     "/Users/samarassi/.nuget/packages/azure.core/1.38.0/azure.core.1.38.0.nupkg.sha512",
     "/Users/samarassi/.nuget/packages/azure.identity/1.11.4/azure.identity.1.11.4.nupkg.sha512",
     "/Users/samarassi/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
+    "/Users/samarassi/.nuget/packages/mapster/10.0.0/mapster.10.0.0.nupkg.sha512",
+    "/Users/samarassi/.nuget/packages/mapster.core/10.0.0/mapster.core.10.0.0.nupkg.sha512",
     "/Users/samarassi/.nuget/packages/microsoft.aspnetcore.openapi/9.0.16/microsoft.aspnetcore.openapi.9.0.16.nupkg.sha512",
     "/Users/samarassi/.nuget/packages/microsoft.bcl.asyncinterfaces/7.0.0/microsoft.bcl.asyncinterfaces.7.0.0.nupkg.sha512",
     "/Users/samarassi/.nuget/packages/microsoft.build.framework/17.8.43/microsoft.build.framework.17.8.43.nupkg.sha512",
@@ -87,5 +89,16 @@
     "/Users/samarassi/.nuget/packages/system.threading.tasks.extensions/4.5.4/system.threading.tasks.extensions.4.5.4.nupkg.sha512",
     "/Users/samarassi/.nuget/packages/system.windows.extensions/6.0.0/system.windows.extensions.6.0.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1603",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "KASHOP.PL depends on Mapster (>= 9.0.16) but Mapster 9.0.16 was not found. Mapster 10.0.0 was resolved instead.",
+      "libraryId": "Mapster",
+      "targetGraphs": [
+        "net9.0"
+      ]
+    }
+  ]
 }

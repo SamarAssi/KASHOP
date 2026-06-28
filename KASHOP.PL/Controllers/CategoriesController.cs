@@ -1,5 +1,6 @@
 using KASHOP.DAL;
 using KASHOP.PL;
+using Mapster;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
@@ -26,6 +27,17 @@ namespace MyApp.Namespace
         public IActionResult Index()
         {
             return Ok(_localizer["Success"].Value);
+        }
+
+        [HttpPost]
+        public IActionResult Create(CategoryRequest request)
+        {
+            var category = request.Adapt<Category>();
+
+            _context.Add(category);
+            _context.SaveChanges();
+
+            return Ok(request);
         }
     }
 }

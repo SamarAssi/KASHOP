@@ -60,6 +60,27 @@
           }
         }
       },
+      "Mapster/10.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Mapster.Core": "10.0.0"
+        },
+        "compile": {
+          "lib/net9.0/Mapster.dll": {}
+        },
+        "runtime": {
+          "lib/net9.0/Mapster.dll": {}
+        }
+      },
+      "Mapster.Core/10.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Mapster.Core.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Mapster.Core.dll": {}
+        }
+      },
       "Microsoft.AspNetCore.OpenApi/9.0.16": {
         "type": "package",
         "dependencies": {
@@ -1741,6 +1762,35 @@
         "lib/netstandard2.0/Humanizer.dll",
         "lib/netstandard2.0/Humanizer.xml",
         "logo.png"
+      ]
+    },
+    "Mapster/10.0.0": {
+      "sha512": "R2WUPwRS1EWVMNp7RE72GaDUVCliAWuKGt75tTYUOzPpM/40aVPDLhljGA465jA8PTLLID0n0cvbRtCzUXYDWg==",
+      "type": "package",
+      "path": "mapster/10.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "icon.png",
+        "lib/net10.0/Mapster.dll",
+        "lib/net8.0/Mapster.dll",
+        "lib/net9.0/Mapster.dll",
+        "lib/netstandard2.0/Mapster.dll",
+        "mapster.10.0.0.nupkg.sha512",
+        "mapster.nuspec"
+      ]
+    },
+    "Mapster.Core/10.0.0": {
+      "sha512": "RHPuFw8JyjPzW8CyMjBFtCsdxd8bTniFcU2ARjpmp2n3c8B30tFCjpQWmajSObdud2eTLVnNCqY3ZweHx+m4+w==",
+      "type": "package",
+      "path": "mapster.core/10.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "icon.png",
+        "lib/netstandard2.0/Mapster.Core.dll",
+        "mapster.core.10.0.0.nupkg.sha512",
+        "mapster.core.nuspec"
       ]
     },
     "Microsoft.AspNetCore.OpenApi/9.0.16": {
@@ -4845,6 +4895,7 @@
   "projectFileDependencyGroups": {
     "net9.0": [
       "KASHOP.BLL >= 1.0.0",
+      "Mapster >= 9.0.16",
       "Microsoft.AspNetCore.OpenApi >= 9.0.16",
       "Microsoft.EntityFrameworkCore.Design >= 9.0.16",
       "Microsoft.Extensions.Localization >= 9.0.16"
@@ -4898,6 +4949,10 @@
       "net9.0": {
         "targetAlias": "net9.0",
         "dependencies": {
+          "Mapster": {
+            "target": "Package",
+            "version": "[9.0.16, )"
+          },
           "Microsoft.AspNetCore.OpenApi": {
             "target": "Package",
             "version": "[9.0.16, )"
@@ -4935,5 +4990,17 @@
         "runtimeIdentifierGraphPath": "/opt/homebrew/Cellar/dotnet@9/9.0.117/libexec/sdk/9.0.117/PortableRuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1603",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "KASHOP.PL depends on Mapster (>= 9.0.16) but Mapster 9.0.16 was not found. Mapster 10.0.0 was resolved instead.",
+      "libraryId": "Mapster",
+      "targetGraphs": [
+        "net9.0"
+      ]
+    }
+  ]
 }

@@ -189,6 +189,10 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
+            "Mapster": {
+              "target": "Package",
+              "version": "[9.0.16, )"
+            },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[9.0.16, )"

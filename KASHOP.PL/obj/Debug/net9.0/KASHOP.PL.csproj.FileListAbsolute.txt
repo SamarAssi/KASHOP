@@ -174,3 +174,5 @@
 /Users/samarassi/Desktop/BackendDevelopmentCourse/KASHOP/KASHOP.PL/obj/Debug/net9.0/KASHOP.PL.csproj.GenerateResource.cache
 /Users/samarassi/Desktop/BackendDevelopmentCourse/KASHOP/KASHOP.PL/obj/Debug/net9.0/ar/KASHOP.PL.resources.cs
 /Users/samarassi/Desktop/BackendDevelopmentCourse/KASHOP/KASHOP.PL/obj/Debug/net9.0/ar/KASHOP.PL.resources.dll
+/Users/samarassi/Desktop/BackendDevelopmentCourse/KASHOP/KASHOP.PL/bin/Debug/net9.0/Mapster.dll
+/Users/samarassi/Desktop/BackendDevelopmentCourse/KASHOP/KASHOP.PL/bin/Debug/net9.0/Mapster.Core.dll
