@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "V6VKUpafUvA=",
+  "dgSpecHash": "BFAfWL7DroE=",
   "success": true,
   "projectFilePath": "/Users/samarassi/Desktop/BackendDevelopmentCourse/KASHOP/KASHOP.PL/KASHOP.PL.csproj",
   "expectedPackageFiles": [
@@ -94,7 +94,7 @@
       "code": "NU1603",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "KASHOP.PL depends on Mapster (>= 9.0.16) but Mapster 9.0.16 was not found. Mapster 10.0.0 was resolved instead.",
+      "message": "KASHOP.BLL depends on Mapster (>= 9.0.16) but Mapster 9.0.16 was not found. Mapster 10.0.0 was resolved instead.",
       "libraryId": "Mapster",
       "targetGraphs": [
         "net9.0"

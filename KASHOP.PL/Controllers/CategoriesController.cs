@@ -1,3 +1,5 @@
+using System.Threading.Tasks;
+using KASHOP.BLL;
 using KASHOP.DAL;
 using KASHOP.PL;
 using Mapster;
@@ -12,40 +14,32 @@ namespace MyApp.Namespace
     [ApiController]
     public class CategoriesController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ICategoryService _categoryService;
         private readonly IStringLocalizer<SharedResources> _localizer;
         
         public CategoriesController(
-            ApplicationDbContext context,
+            ICategoryService categoryService,
             IStringLocalizer<SharedResources> localizer
         )
         {
-            _context = context;
+            _categoryService = categoryService;
             _localizer = localizer;
         }
 
         [HttpGet]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var categories = _context.Categories
-                .Include(category => category.Translations)
-                .AsNoTracking()
-                .ToList();
+            var categories = await _categoryService.GetAllCategories();
 
-            var response = categories.Adapt<List<CategoryResponse>>();
-
-            return Ok(new { _localizer["Success"].Value, response });
+            return Ok(new { _localizer["Success"].Value, categories });
         }
 
         [HttpPost]
-        public IActionResult Create(CategoryRequest request)
+        public async Task<IActionResult> Create(CategoryRequest request)
         {
-            var category = request.Adapt<Category>();
+            var category = await _categoryService.CreateCategory(request);
 
-            _context.Add(category);
-            _context.SaveChanges();
-
-            return Ok(request);
+            return Ok(category);
         }
     }
 }

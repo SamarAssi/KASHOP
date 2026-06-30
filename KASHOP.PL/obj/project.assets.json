@@ -1682,7 +1682,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v9.0",
         "dependencies": {
-          "KASHOP.DAL": "1.0.0"
+          "KASHOP.DAL": "1.0.0",
+          "Mapster": "9.0.16"
         },
         "compile": {
           "bin/placeholder/KASHOP.BLL.dll": {}
@@ -4895,7 +4896,6 @@
   "projectFileDependencyGroups": {
     "net9.0": [
       "KASHOP.BLL >= 1.0.0",
-      "Mapster >= 9.0.16",
       "Microsoft.AspNetCore.OpenApi >= 9.0.16",
       "Microsoft.EntityFrameworkCore.Design >= 9.0.16",
       "Microsoft.Extensions.Localization >= 9.0.16"
@@ -4949,10 +4949,6 @@
       "net9.0": {
         "targetAlias": "net9.0",
         "dependencies": {
-          "Mapster": {
-            "target": "Package",
-            "version": "[9.0.16, )"
-          },
           "Microsoft.AspNetCore.OpenApi": {
             "target": "Package",
             "version": "[9.0.16, )"
@@ -4996,7 +4992,7 @@
       "code": "NU1603",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "KASHOP.PL depends on Mapster (>= 9.0.16) but Mapster 9.0.16 was not found. Mapster 10.0.0 was resolved instead.",
+      "message": "KASHOP.BLL depends on Mapster (>= 9.0.16) but Mapster 9.0.16 was not found. Mapster 10.0.0 was resolved instead.",
       "libraryId": "Mapster",
       "targetGraphs": [
         "net9.0"

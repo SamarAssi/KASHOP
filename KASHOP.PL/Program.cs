@@ -6,6 +6,7 @@ using KASHOP.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Localization;
+using KASHOP.BLL;
 
 namespace KASHOP.PL;
 
@@ -43,6 +44,9 @@ public class Program
             options.RequestCultureProviders.Clear();
             options.RequestCultureProviders.Add(new AcceptLanguageHeaderRequestCultureProvider());
         });
+
+        builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+        builder.Services.AddScoped<ICategoryService, CategoryService>();
 
         var app = builder.Build();
 

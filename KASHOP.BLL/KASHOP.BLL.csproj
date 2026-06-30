@@ -10,4 +10,8 @@
     <ProjectReference Include="../KASHOP.DAL/KASHOP.DAL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Mapster" Version="9.0.16" />
+  </ItemGroup>
+
 </Project>

@@ -1,11 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "xJLMarTtkSU=",
+  "dgSpecHash": "IFIJ8H73nrM=",
   "success": true,
   "projectFilePath": "/Users/samarassi/Desktop/BackendDevelopmentCourse/KASHOP/KASHOP.BLL/KASHOP.BLL.csproj",
   "expectedPackageFiles": [
     "/Users/samarassi/.nuget/packages/azure.core/1.38.0/azure.core.1.38.0.nupkg.sha512",
     "/Users/samarassi/.nuget/packages/azure.identity/1.11.4/azure.identity.1.11.4.nupkg.sha512",
+    "/Users/samarassi/.nuget/packages/mapster/10.0.0/mapster.10.0.0.nupkg.sha512",
+    "/Users/samarassi/.nuget/packages/mapster.core/10.0.0/mapster.core.10.0.0.nupkg.sha512",
     "/Users/samarassi/.nuget/packages/microsoft.bcl.asyncinterfaces/1.1.1/microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "/Users/samarassi/.nuget/packages/microsoft.csharp/4.5.0/microsoft.csharp.4.5.0.nupkg.sha512",
     "/Users/samarassi/.nuget/packages/microsoft.data.sqlclient/5.1.6/microsoft.data.sqlclient.5.1.6.nupkg.sha512",
@@ -60,5 +62,16 @@
     "/Users/samarassi/.nuget/packages/system.threading.tasks.extensions/4.5.4/system.threading.tasks.extensions.4.5.4.nupkg.sha512",
     "/Users/samarassi/.nuget/packages/system.windows.extensions/6.0.0/system.windows.extensions.6.0.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1603",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "KASHOP.BLL depends on Mapster (>= 9.0.16) but Mapster 9.0.16 was not found. Mapster 10.0.0 was resolved instead.",
+      "libraryId": "Mapster",
+      "targetGraphs": [
+        "net9.0"
+      ]
+    }
+  ]
 }
