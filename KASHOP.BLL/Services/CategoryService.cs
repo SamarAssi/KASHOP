@@ -1,6 +1,7 @@
 ﻿using KASHOP.DAL;
 using Mapster;
 using System.Linq.Expressions;
+using System.Reflection.Metadata.Ecma335;
 
 namespace KASHOP.BLL;
 
@@ -45,5 +46,14 @@ public class CategoryService : ICategoryService
         await _categoryRepository.CreateAsync(category);
 
         return category.Adapt<CategoryResponse>();
+    }
+
+    public async Task<bool> DeleteCategory(int id)
+    {
+        var category = await _categoryRepository.GetOneAsync(category => category.Id == id);
+
+        return category == null ?
+        false :
+        await _categoryRepository.DeleteAsync(category);
     }
 }

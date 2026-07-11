@@ -1,3 +1,4 @@
+using System.Data;
 using System.Threading.Tasks;
 using KASHOP.BLL;
 using KASHOP.DAL;
@@ -48,6 +49,14 @@ namespace MyApp.Namespace
             var category = await _categoryService.CreateCategory(request);
 
             return Ok(category);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var deleted = await _categoryService.DeleteCategory(id);
+
+            return !deleted ? BadRequest() : Ok();
         }
     }
 }
