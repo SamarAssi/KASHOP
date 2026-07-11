@@ -2,30 +2,9 @@
 
 namespace KASHOP.DAL;
 
-public class CategoryRepository : ICategoryRepository
+public class CategoryRepository : GenericRepository<Category>, ICategoryRepository
 {
-    private readonly ApplicationDbContext _context;
-
-    public CategoryRepository(ApplicationDbContext context)
+    public CategoryRepository(ApplicationDbContext context) : base(context)
     {
-        _context = context;
-    }
-
-    public async Task<List<Category>> GetAllAsync()
-    {
-        var categories = await _context.Categories
-            .Include(category => category.Translations)
-            .AsNoTracking()
-            .ToListAsync();
-
-        return categories;
-    }
-
-    public async Task<Category> CreateAsync(Category category)
-    {
-        await _context.AddAsync(category);
-        await _context.SaveChangesAsync();
-
-        return category;
     }
 }
