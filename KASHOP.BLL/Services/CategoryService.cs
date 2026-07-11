@@ -1,5 +1,6 @@
 ﻿using KASHOP.DAL;
 using Mapster;
+using System.Linq.Expressions;
 
 namespace KASHOP.BLL;
 
@@ -22,6 +23,19 @@ public class CategoryService : ICategoryService
         );
 
         return categories.Adapt<List<CategoryResponse>>();
+    }
+
+    public async Task<CategoryResponse> GetCategory(Expression<Func<Category, bool>> filter)
+    {
+        var category = await _categoryRepository.GetOneAsync(
+            filter,
+            new string[]
+            {
+                nameof(Category.Translations)
+            }
+        );
+
+        return category.Adapt<CategoryResponse>();
     }
 
     public async Task<CategoryResponse> CreateCategory(CategoryRequest request)

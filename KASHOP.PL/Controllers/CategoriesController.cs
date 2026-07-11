@@ -34,6 +34,14 @@ namespace MyApp.Namespace
             return Ok(new { _localizer["Success"].Value, categories });
         }
 
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            var category = await _categoryService.GetCategory(category => category.Id == id);
+
+            return Ok(category);
+        }
+
         [HttpPost]
         public async Task<IActionResult> Create(CategoryRequest request)
         {

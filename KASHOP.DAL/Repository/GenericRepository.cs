@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore;
 
 namespace KASHOP.DAL;
 
@@ -10,6 +11,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
         _context = context;
     }
+
     public async Task<List<T>> GetAllAsync(string[]? includes = null)
     {
         IQueryable<T> query = _context.Set<T>();
@@ -23,6 +25,39 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
         }
         
         return await query.ToListAsync();
+    }
+
+    public async Task<T> GetOneAsync(
+        Expression<Func<T, bool>> filter,
+        string[]? includes = null
+    )
+    {
+        IQueryable<T> query = _context.Set<T>();
+
+        if (includes != null)
+        {
+            foreach (var include in includes)
+            {
+                query = query.Include(include);
+            }
+        }
+
+        return await query.FirstOrDefaultAsync(filter);
+    }
+
+    private IQueryable<T> AddIncludes(string[]? includes = null)
+    {
+        IQueryable<T> query = _context.Set<T>();
+
+        if (includes != null)
+        {
+            foreach (var include in includes)
+            {
+                query = query.Include(include);
+            }
+        }
+
+        return query;
     }
 
     public async Task<T> CreateAsync(T entity)
