@@ -48,6 +48,30 @@ public class CategoryService : ICategoryService
         return category.Adapt<CategoryResponse>();
     }
 
+    public async Task<bool> UpdateCategory(int id, CategoryRequest request)
+    {
+        var category = await _categoryRepository.GetOneAsync(
+            category => category.Id == id,
+            new string[]
+            {
+                nameof(Category.Translations)
+            }
+        );
+
+        if (category == null) return false;
+
+        category.Translations = new List<CategoryTranslation>();
+
+        foreach (var translationRequest in request.Translations)
+        {
+            var translation = translationRequest.Adapt<CategoryTranslation>();
+
+            category.Translations.Add(translation);
+        }
+
+        return await _categoryRepository.UpdateAsync(category);
+    }
+
     public async Task<bool> DeleteCategory(int id)
     {
         var category = await _categoryRepository.GetOneAsync(category => category.Id == id);

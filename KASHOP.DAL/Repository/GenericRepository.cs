@@ -52,12 +52,17 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
         return entity;
     }
 
+    public async Task<bool> UpdateAsync(T entity)
+    {
+        _context.Update(entity);
+
+        return await _context.SaveChangesAsync() > 0;
+    }
+
     public async Task<bool> DeleteAsync(T entity)
     {
         _context.Remove(entity);
 
-        var affected = await _context.SaveChangesAsync();
-
-        return affected > 0;
+        return await _context.SaveChangesAsync() > 0;
     }
 }

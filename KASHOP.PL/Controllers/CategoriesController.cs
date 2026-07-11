@@ -51,6 +51,14 @@ namespace MyApp.Namespace
             return Ok(category);
         }
 
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(int id, CategoryRequest request)
+        {
+            var updated = await _categoryService.UpdateCategory(id, request);
+
+            return !updated ? BadRequest() : Ok();
+        }
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
