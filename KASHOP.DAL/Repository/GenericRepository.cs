@@ -14,15 +14,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
 
     public async Task<List<T>> GetAllAsync(string[]? includes = null)
     {
-        IQueryable<T> query = _context.Set<T>();
-
-        if (includes != null)
-        {
-            foreach (var include in includes)
-            {
-                query = query.Include(include);
-            }
-        }
+        IQueryable<T> query = AddIncludes(includes);
         
         return await query.ToListAsync();
     }
@@ -32,15 +24,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
         string[]? includes = null
     )
     {
-        IQueryable<T> query = _context.Set<T>();
-
-        if (includes != null)
-        {
-            foreach (var include in includes)
-            {
-                query = query.Include(include);
-            }
-        }
+        IQueryable<T> query = AddIncludes(includes);
 
         return await query.FirstOrDefaultAsync(filter);
     }
