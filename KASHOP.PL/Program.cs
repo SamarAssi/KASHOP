@@ -24,38 +24,13 @@ public class Program
         // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
         builder.Services.AddOpenApi();
 
-        builder.Services.AddDbContext<ApplicationDbContext>(options =>
-        {
-            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
-        });
+        builder.ConnectWithDatabase();
 
-        builder.Services.AddLocalization(options => options.ResourcesPath = "");
+        builder.AddLocalization();
 
-        const string defaultCulture = "en";
-        var supportedCultures = new[]
-        {
-            new CultureInfo(defaultCulture),
-            new CultureInfo("ar")
-        };
+        builder.Services.RegisterService();
 
-        builder.Services.Configure<RequestLocalizationOptions>(options =>
-        {
-            options.DefaultRequestCulture = new RequestCulture(defaultCulture);
-            options.SupportedCultures = supportedCultures;
-            options.SupportedUICultures = supportedCultures;
-            options.RequestCultureProviders.Clear();
-            options.RequestCultureProviders.Add(new AcceptLanguageHeaderRequestCultureProvider());
-        });
-
-        builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
-        builder.Services.AddScoped<ICategoryService, CategoryService>();
-        builder.Services.AddScoped<IAuthenticationService, AuthenticationSerivce>();
-        builder.Services.AddScoped<ISeedData, RoleSeedData>();
-
-
-        builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
-            .AddEntityFrameworkStores<ApplicationDbContext>()
-            .AddDefaultTokenProviders();
+        builder.Services.AddIdentityServices();
 
         var app = builder.Build();
 
@@ -67,21 +42,11 @@ public class Program
             app.MapOpenApi();
         }
 
-        using (var scope = app.Services.CreateScope())
-        {
-            var services = scope.ServiceProvider;
-            var seeders = services.GetServices<ISeedData>();
-
-            foreach (var seeder in seeders)
-            {
-                await seeder.DataSeed();
-            }
-        }
+        await app.CreateObject();
 
         app.UseHttpsRedirection();
 
         app.UseAuthorization();
-
 
         app.MapControllers();
 
