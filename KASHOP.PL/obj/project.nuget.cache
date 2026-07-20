@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "BFAfWL7DroE=",
+  "dgSpecHash": "MdHhexZpfn4=",
   "success": true,
   "projectFilePath": "/Users/samarassi/Desktop/BackendDevelopmentCourse/KASHOP/KASHOP.PL/KASHOP.PL.csproj",
   "expectedPackageFiles": [
@@ -9,6 +9,9 @@
     "/Users/samarassi/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/Users/samarassi/.nuget/packages/mapster/10.0.0/mapster.10.0.0.nupkg.sha512",
     "/Users/samarassi/.nuget/packages/mapster.core/10.0.0/mapster.core.10.0.0.nupkg.sha512",
+    "/Users/samarassi/.nuget/packages/microsoft.aspnetcore.cryptography.internal/9.0.16/microsoft.aspnetcore.cryptography.internal.9.0.16.nupkg.sha512",
+    "/Users/samarassi/.nuget/packages/microsoft.aspnetcore.cryptography.keyderivation/9.0.16/microsoft.aspnetcore.cryptography.keyderivation.9.0.16.nupkg.sha512",
+    "/Users/samarassi/.nuget/packages/microsoft.aspnetcore.identity.entityframeworkcore/9.0.16/microsoft.aspnetcore.identity.entityframeworkcore.9.0.16.nupkg.sha512",
     "/Users/samarassi/.nuget/packages/microsoft.aspnetcore.openapi/9.0.16/microsoft.aspnetcore.openapi.9.0.16.nupkg.sha512",
     "/Users/samarassi/.nuget/packages/microsoft.bcl.asyncinterfaces/7.0.0/microsoft.bcl.asyncinterfaces.7.0.0.nupkg.sha512",
     "/Users/samarassi/.nuget/packages/microsoft.build.framework/17.8.43/microsoft.build.framework.17.8.43.nupkg.sha512",
@@ -34,6 +37,8 @@
     "/Users/samarassi/.nuget/packages/microsoft.extensions.dependencyinjection/9.0.16/microsoft.extensions.dependencyinjection.9.0.16.nupkg.sha512",
     "/Users/samarassi/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/9.0.16/microsoft.extensions.dependencyinjection.abstractions.9.0.16.nupkg.sha512",
     "/Users/samarassi/.nuget/packages/microsoft.extensions.dependencymodel/9.0.16/microsoft.extensions.dependencymodel.9.0.16.nupkg.sha512",
+    "/Users/samarassi/.nuget/packages/microsoft.extensions.identity.core/9.0.16/microsoft.extensions.identity.core.9.0.16.nupkg.sha512",
+    "/Users/samarassi/.nuget/packages/microsoft.extensions.identity.stores/9.0.16/microsoft.extensions.identity.stores.9.0.16.nupkg.sha512",
     "/Users/samarassi/.nuget/packages/microsoft.extensions.localization/9.0.16/microsoft.extensions.localization.9.0.16.nupkg.sha512",
     "/Users/samarassi/.nuget/packages/microsoft.extensions.localization.abstractions/9.0.16/microsoft.extensions.localization.abstractions.9.0.16.nupkg.sha512",
     "/Users/samarassi/.nuget/packages/microsoft.extensions.logging/9.0.16/microsoft.extensions.logging.9.0.16.nupkg.sha512",
