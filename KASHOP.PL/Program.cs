@@ -8,12 +8,13 @@ using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Localization;
 using KASHOP.BLL;
 using Microsoft.AspNetCore.Identity;
+using System.Threading.Tasks;
 
 namespace KASHOP.PL;
 
 public class Program
 {
-    public static void Main(string[] args)
+    public static async Task Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
 
@@ -49,6 +50,7 @@ public class Program
         builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
         builder.Services.AddScoped<ICategoryService, CategoryService>();
         builder.Services.AddScoped<IAuthenticationService, AuthenticationSerivce>();
+        builder.Services.AddScoped<ISeedData, RoleSeedData>();
 
 
         builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
@@ -63,6 +65,17 @@ public class Program
         if (app.Environment.IsDevelopment())
         {
             app.MapOpenApi();
+        }
+
+        using (var scope = app.Services.CreateScope())
+        {
+            var services = scope.ServiceProvider;
+            var seeders = services.GetServices<ISeedData>();
+
+            foreach (var seeder in seeders)
+            {
+                await seeder.DataSeed();
+            }
         }
 
         app.UseHttpsRedirection();
