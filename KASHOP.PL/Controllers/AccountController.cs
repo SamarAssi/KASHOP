@@ -31,5 +31,11 @@ namespace MyApp.Namespace
 
             return Ok(result);
         }
+
+        [HttpGet("ConfirmEmail")]
+        public async Task<IActionResult> ConfirmEmail(string email)
+        {
+            return Content(email);
+        }
     }
 }

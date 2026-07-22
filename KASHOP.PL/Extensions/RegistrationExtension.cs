@@ -14,6 +14,7 @@ public static class RegistrationExtension
         services.AddScoped<ICategoryService, CategoryService>();
         services.AddScoped<IAuthenticationService, AuthenticationSerivce>();
         services.AddScoped<ISeedData, RoleSeedData>();
+        services.AddTransient<IEmailSender, EmailSender>();
 
         return services;
     }
