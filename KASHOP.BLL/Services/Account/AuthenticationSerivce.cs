@@ -22,4 +22,23 @@ public class AuthenticationSerivce : IAuthenticationService
         new RegisterResponse() { Message = "Success" } :
         new RegisterResponse() { Message = "Error" };
     }
+
+    public async Task<LoginResponse> Login(LoginRequest request)
+    {
+        var user = await _userManager.FindByEmailAsync(request.Email);
+
+        if (user is null)
+        {
+            return new LoginResponse()
+            {
+                Message = "Invalid Email"
+            };
+        }
+
+        var result = await _userManager.CheckPasswordAsync(user, request.Password);
+
+        return result == true ?
+        new LoginResponse() { Message = "Success" } :
+        new LoginResponse() { Message = "Invalid Password" };
+    }
 }
