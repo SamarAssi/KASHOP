@@ -22,7 +22,20 @@ public class AuthenticationSerivce : IAuthenticationService
     {
         var user = request.Adapt<ApplicationUser>();
         var result = await _userManager.CreateAsync(user, request.Password);
-        var emailUrl = $"http://localhost:5270/api/Account/ConfirmEmail?email={request.Email}";
+
+        if (!result.Succeeded)
+        {
+            return new RegisterResponse() 
+            { 
+                Message = "Error",
+                Errors = result.Errors.Select(error => error.Description).ToList()
+            };
+        }
+
+        var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+        token = Uri.EscapeDataString(token);
+
+        var emailUrl = $"http://localhost:5270/api/Account/ConfirmEmail?token={token}&UserId={user.Id}";
 
         await _emailSender.SendEmailAsync(
             email: request.Email,
@@ -35,9 +48,20 @@ public class AuthenticationSerivce : IAuthenticationService
             "
         );
 
-        return result.Succeeded ?
-        new RegisterResponse() { Message = "Success" } :
-        new RegisterResponse() { Message = "Error" };
+        return new RegisterResponse() { Message = "Success" };
+    }
+
+    public async Task<bool> ConfirmEmail(ConfirmEmailRequest request)
+    {
+        var user = await _userManager.FindByIdAsync(request.UserId);
+
+        if (user is null) return false;
+
+        request.Token = Uri.UnescapeDataString(request.Token);
+
+        var result = await _userManager.ConfirmEmailAsync(user, request.Token);
+
+        return result.Succeeded ? true : false;
     }
 
     public async Task<LoginResponse> Login(LoginRequest request)
@@ -49,6 +73,16 @@ public class AuthenticationSerivce : IAuthenticationService
             return new LoginResponse()
             {
                 Message = "Invalid Email"
+            };
+        }
+
+        var isConfirmed = await _userManager.IsEmailConfirmedAsync(user);
+
+        if (!isConfirmed)
+        {
+            return new LoginResponse()
+            {
+                Message = "Email is not confirmed"
             };
         }
 
