@@ -1,6 +1,12 @@
-﻿using KASHOP.DAL;
+﻿using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+using KASHOP.DAL;
+using KASHOP.DAL.Migrations;
 using Mapster;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
 
 namespace KASHOP.BLL;
 
@@ -8,14 +14,17 @@ public class AuthenticationSerivce : IAuthenticationService
 {
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly IEmailSender _emailSender;
+    private readonly IConfiguration _configuration;
 
     public AuthenticationSerivce(
         UserManager<ApplicationUser> userManager,
-        IEmailSender emailSender
+        IEmailSender emailSender,
+        IConfiguration configuration
     )
     {
         _userManager = userManager;
         _emailSender = emailSender;
+        _configuration = configuration;
     }
 
     public async Task<RegisterResponse> Register(RegisterRequest request)
@@ -88,8 +97,41 @@ public class AuthenticationSerivce : IAuthenticationService
 
         var result = await _userManager.CheckPasswordAsync(user, request.Password);
 
-        return result == true ?
-        new LoginResponse() { Message = "Success" } :
-        new LoginResponse() { Message = "Invalid Password" };
+        return result == false ?
+        new LoginResponse() { Message = "Invalid Password" } :
+        new LoginResponse() 
+        { 
+            Message = "Success",
+            AccessToken = await GenerateJWT(user)
+        };
+    }
+
+    private async Task<string> GenerateJWT(ApplicationUser user)
+    {
+        var roles = await _userManager.GetRolesAsync(user);
+
+        var userClaims = new List<Claim>()
+        {
+            new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+            new Claim(ClaimTypes.Name, user.UserName),
+            new Claim(ClaimTypes.Email, user.Email),
+            new Claim(ClaimTypes.Role, string.Join(',', roles))
+        };
+
+        var secretKey = new SymmetricSecurityKey(
+            Encoding.UTF8.GetBytes(_configuration["Apisettings:SecretKey"]!)
+        );
+
+        var credentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
+
+        var token = new JwtSecurityToken(
+            issuer: _configuration["Apisettings:Issuer"],
+            audience: _configuration["Apisettings:Audience"],
+            claims: userClaims,
+            expires: DateTime.UtcNow.AddYears(20),
+            signingCredentials: credentials
+        );
+
+        return new JwtSecurityTokenHandler().WriteToken(token);
     }
 }

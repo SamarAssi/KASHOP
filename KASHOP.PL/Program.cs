@@ -9,6 +9,9 @@ using Microsoft.AspNetCore.Localization;
 using KASHOP.BLL;
 using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace KASHOP.PL;
 
@@ -31,6 +34,29 @@ public class Program
         builder.Services.RegisterService();
 
         builder.Services.AddIdentityServices();
+
+        builder.Services.AddAuthentication(options =>
+        {
+            options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+        })
+        .AddJwtBearer(options =>
+        {
+            options.TokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuer = true,
+                ValidateAudience = true,
+                ValidateLifetime = true,
+                ValidateIssuerSigningKey = true,
+                ValidIssuer = builder.Configuration["Apisettings:Issuer"],
+                ValidAudience = builder.Configuration["Apisettings:Audience"],
+                IssuerSigningKey = new SymmetricSecurityKey(
+                    Encoding.UTF8.GetBytes(builder.Configuration["Apisettings:SecretKey"]!)
+                )
+            };
+        });
+        
+        builder.Services.AddAuthentication();        
 
         var app = builder.Build();
 
