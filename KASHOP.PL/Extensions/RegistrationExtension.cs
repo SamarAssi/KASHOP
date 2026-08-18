@@ -18,34 +18,4 @@ public static class RegistrationExtension
 
         return services;
     }
-
-    public static IServiceCollection AddIdentityServices(
-        this IServiceCollection services
-    )
-    {
-        services.AddIdentity<ApplicationUser, IdentityRole>(options =>
-        {
-            options.User.RequireUniqueEmail = true;
-        })
-        .AddEntityFrameworkStores<ApplicationDbContext>()
-        .AddDefaultTokenProviders();
-
-        return services;
-    }
-
-    public async static Task CreateObject(
-        this WebApplication app
-    )
-    {
-        using (var scope = app.Services.CreateScope())
-        {
-            var services = scope.ServiceProvider;
-            var seeders = services.GetServices<ISeedData>();
-
-            foreach (var seeder in seeders)
-            {
-                await seeder.DataSeed();
-            }
-        }
-    }
 }

@@ -5,11 +5,11 @@ namespace KASHOP.PL;
 
 public static class LocalizationExtension
 {
-    public static WebApplicationBuilder AddLocalization(
-        this WebApplicationBuilder builder
+    public static IServiceCollection AddLocalizationServices(
+        this IServiceCollection services
     )
     {
-        builder.Services.AddLocalization(options => options.ResourcesPath = "");
+        services.AddLocalization(options => options.ResourcesPath = "");
 
         const string defaultCulture = "en";
         var supportedCultures = new[]
@@ -18,7 +18,7 @@ public static class LocalizationExtension
             new CultureInfo("ar")
         };
 
-        builder.Services.Configure<RequestLocalizationOptions>(options =>
+        services.Configure<RequestLocalizationOptions>(options =>
         {
             options.DefaultRequestCulture = new RequestCulture(defaultCulture);
             options.SupportedCultures = supportedCultures;
@@ -27,6 +27,6 @@ public static class LocalizationExtension
             options.RequestCultureProviders.Add(new AcceptLanguageHeaderRequestCultureProvider());
         });
 
-        return builder;
+        return services;
     }
 }

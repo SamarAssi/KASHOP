@@ -5,15 +5,16 @@ namespace KASHOP.PL;
 
 public static class DatabaseExtension
 {
-    public static WebApplicationBuilder ConnectWithDatabase(
-        this WebApplicationBuilder builder
+    public static IServiceCollection AddDatabaseServices(
+        this IServiceCollection services,
+        IConfiguration configuration
     )
     {
-        builder.Services.AddDbContext<ApplicationDbContext>(options =>
+        services.AddDbContext<ApplicationDbContext>(options =>
         {
-            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+            options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
         });
 
-        return builder;
+        return services;
     }
 }

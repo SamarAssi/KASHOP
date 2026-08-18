@@ -23,58 +23,11 @@ public class Program
 
         // Add services to the container.
 
-        builder.Services.AddControllers();
-        // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-        builder.Services.AddOpenApi();
-
-        builder.ConnectWithDatabase();
-
-        builder.AddLocalization();
-
-        builder.Services.RegisterService();
-
-        builder.Services.AddIdentityServices();
-
-        builder.Services.AddAuthentication(options =>
-        {
-            options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-            options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-        })
-        .AddJwtBearer(options =>
-        {
-            options.TokenValidationParameters = new TokenValidationParameters
-            {
-                ValidateIssuer = true,
-                ValidateAudience = true,
-                ValidateLifetime = true,
-                ValidateIssuerSigningKey = true,
-                ValidIssuer = builder.Configuration["Apisettings:Issuer"],
-                ValidAudience = builder.Configuration["Apisettings:Audience"],
-                IssuerSigningKey = new SymmetricSecurityKey(
-                    Encoding.UTF8.GetBytes(builder.Configuration["Apisettings:SecretKey"]!)
-                )
-            };
-        });
-        
-        builder.Services.AddAuthentication();        
+        builder.Services.AddApplicationServices(builder.Configuration);
 
         var app = builder.Build();
 
-        app.UseRequestLocalization(app.Services.GetRequiredService<IOptions<RequestLocalizationOptions>>().Value);
-
-        // Configure the HTTP request pipeline.
-        if (app.Environment.IsDevelopment())
-        {
-            app.MapOpenApi();
-        }
-
-        await app.CreateObject();
-
-        app.UseHttpsRedirection();
-
-        app.UseAuthorization();
-
-        app.MapControllers();
+        await app.UseApplicationPipeline();
 
         app.Run();
     }
