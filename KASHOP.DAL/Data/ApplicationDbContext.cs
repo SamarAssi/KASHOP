@@ -9,6 +9,8 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
 {
     public DbSet<Category> Categories { get; set; }
     public DbSet<CategoryTranslation> CategoryTranslations { get; set; }
+    public DbSet<Product> Products { get; set; }
+    public DbSet<ProductTranslation> ProductTranslations { get; set; }
     private readonly IHttpContextAccessor _httpContextAccessor;
     
     public ApplicationDbContext(
@@ -17,6 +19,13 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     ) : base(options)
     {
         _httpContextAccessor = httpContextAccessor;
+    }
+
+    protected override void OnModelCreating(ModelBuilder builder)
+    {
+        base.OnModelCreating(builder);
+
+        builder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
     }
 
     public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
