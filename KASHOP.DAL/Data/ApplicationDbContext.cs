@@ -31,7 +31,9 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {
         var entries = ChangeTracker.Entries<AuditLog>();
-        var currentUserId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+        var currentUserId = _httpContextAccessor.HttpContext?.User.FindFirstValue(
+            ClaimTypes.NameIdentifier
+        );
 
         foreach (var entry in entries)
         {

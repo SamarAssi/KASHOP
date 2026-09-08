@@ -4,5 +4,5 @@ namespace KASHOP.BLL;
 
 public interface IFileService
 {
-    Task<string?> UploadAsync(IFormFile file);
+    Task<Result<string?>> UploadAsync(IFormFile file);
 }

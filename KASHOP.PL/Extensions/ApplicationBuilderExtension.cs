@@ -9,6 +9,7 @@ public static class ApplicationBuilderExtension
     )
     {
         app.UseRequestLocalization(app.Services.GetRequiredService<IOptions<RequestLocalizationOptions>>().Value);
+        MapsterExtension.MapsterServices();
 
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())

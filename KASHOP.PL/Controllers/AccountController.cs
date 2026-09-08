@@ -21,7 +21,9 @@ namespace MyApp.Namespace
         {
             var result = await _authenticationService.Register(request);
 
-            return Ok(result);
+            return result.Success ? 
+                Ok(result) : 
+                BadRequest(result);
         }
 
         [HttpGet("ConfirmEmail")]
@@ -29,9 +31,9 @@ namespace MyApp.Namespace
         {
             var result = await _authenticationService.ConfirmEmail(request);
 
-            if (!result) return BadRequest();
-
-            return Ok();
+            return result.Success ? 
+                Ok(result) : 
+                BadRequest(result);
         }
 
         [HttpPost("Login")]
@@ -39,7 +41,9 @@ namespace MyApp.Namespace
         {
             var result = await _authenticationService.Login(request);
 
-            return Ok(result);
+            return result.Success ? 
+                Ok(result) : 
+                BadRequest(result);
         }
     }
 }

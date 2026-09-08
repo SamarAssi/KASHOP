@@ -2,7 +2,7 @@
 
 public class AuditLog
 {
-    public string CreatedById { get; set; }
+    public string CreatedById { get; set; } = null!;
     public DateTime CreatedOn { get; set; }
     public string? UpdatedById { get; set; }
     public DateTime? UpdatedOn { get; set; }

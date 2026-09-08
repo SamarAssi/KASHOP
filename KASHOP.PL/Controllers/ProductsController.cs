@@ -1,0 +1,31 @@
+using KASHOP.BLL;
+using KASHOP.DAL;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+
+namespace MyApp.Namespace
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class ProductsController : ControllerBase
+    {
+        private readonly IProductService _productService;
+
+        public ProductsController(IProductService productService)
+        {
+            _productService = productService;
+        }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> Create([FromForm] ProductRequest request)
+        {
+            var result = await _productService.CreateProduct(request);
+
+            return result.Success ? 
+                Ok(result) : 
+                BadRequest(result);
+        }
+    }
+}

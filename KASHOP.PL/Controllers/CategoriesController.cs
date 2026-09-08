@@ -32,41 +32,51 @@ namespace MyApp.Namespace
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var categories = await _categoryService.GetAllCategories();
+            var result = await _categoryService.GetAllCategories();
 
-            return Ok(new { _localizer["Success"].Value, categories });
+            return result.Success ?
+                Ok(result) :
+                BadRequest(result);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            var category = await _categoryService.GetCategory(category => category.Id == id);
+            var result = await _categoryService.GetCategory(category => category.Id == id);
 
-            return Ok(category);
+            return result.Success ?
+                Ok(result) :
+                NotFound(result);
         }
 
         [HttpPost]
         public async Task<IActionResult> Create(CategoryRequest request)
         {
-            var category = await _categoryService.CreateCategory(request);
+            var result = await _categoryService.CreateCategory(request);
 
-            return Ok(category);
+            return result.Success ?
+                Ok(result) :
+                BadRequest(result);
         }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, CategoryRequest request)
         {
-            var updated = await _categoryService.UpdateCategory(id, request);
+            var result = await _categoryService.UpdateCategory(id, request);
 
-            return !updated ? BadRequest() : Ok();
+            return result.Success ?
+                Ok(result) :
+                NotFound(result);
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            var deleted = await _categoryService.DeleteCategory(id);
+            var result = await _categoryService.DeleteCategory(id);
 
-            return !deleted ? BadRequest() : Ok();
+            return result.Success ?
+                Ok(result) :
+                NotFound(result);
         }
     }
 }

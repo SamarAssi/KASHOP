@@ -6,14 +6,17 @@ namespace KASHOP.PL;
 
 public static class RegistrationExtension
 {
-    public static IServiceCollection RegisterService(
+    public static IServiceCollection RegisterServices(
         this IServiceCollection services
     )
     {
+        services.AddScoped<IProductRepository, ProductRepository>();
+        services.AddScoped<IProductService, ProductService>();
         services.AddScoped<ICategoryRepository, CategoryRepository>();
         services.AddScoped<ICategoryService, CategoryService>();
         services.AddScoped<IAuthenticationService, AuthenticationSerivce>();
         services.AddScoped<ISeedData, RoleSeedData>();
+        services.AddScoped<IFileService, FileService>();
         services.AddTransient<IEmailSender, EmailSender>();
 
         return services;

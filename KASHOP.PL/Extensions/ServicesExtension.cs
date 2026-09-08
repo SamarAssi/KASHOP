@@ -10,8 +10,8 @@ public static class ServicesExtension
         services.AddControllers();
         services.AddOpenApi();
         services.AddDatabaseServices(configuration);
-        services.AddLocalizationServices();
-        services.RegisterService();
+        services.AddLocalizationServices(); 
+        services.RegisterServices();
         services.AddIdentityServices();
         services.AddJwtAuthenticationServices(configuration);
 

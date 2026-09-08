@@ -5,9 +5,9 @@ namespace KASHOP.BLL;
 
 public interface ICategoryService
 {
-    Task<List<CategoryResponse>> GetAllCategories();
-    Task<CategoryResponse> GetCategory(Expression<Func<Category, bool>> filter);
-    Task<CategoryResponse> CreateCategory(CategoryRequest request);
-    Task<bool> UpdateCategory(int id, CategoryRequest request);
-    Task<bool> DeleteCategory(int id);
+    Task<Result<List<CategoryResponse>>> GetAllCategories();
+    Task<Result<CategoryResponse>> GetCategory(Expression<Func<Category, bool>> filter);
+    Task<Result<CategoryResponse>> CreateCategory(CategoryRequest request);
+    Task<Result<bool>> UpdateCategory(int id, CategoryRequest request);
+    Task<Result<bool>> DeleteCategory(int id);
 }
