@@ -19,7 +19,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
         return await query.ToListAsync();
     }
 
-    public async Task<T> GetOneAsync(
+    public async Task<T>? GetOneAsync(
         Expression<Func<T, bool>> filter,
         string[]? includes = null
     )

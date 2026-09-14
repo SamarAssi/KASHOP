@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Globalization;
+using System.Transactions;
 using KASHOP.DAL;
 using Mapster;
 
@@ -11,14 +12,35 @@ public static class MapsterConfig
     {
         TypeAdapterConfig<Category, CategoryResponse>
             .NewConfig()
-            .Map(dest => dest.UserId, src => src.CreatedById)
-            .Map(dest => dest.User, src => src.CreatedBy.UserName)
+            .Map(destination => destination.UserId, source => source.CreatedById)
+            .Map(destination => destination.User, source => source.CreatedBy.UserName)
             .Map(
-                dest => dest.Name, 
-                src => src.Translations
-                    .Where(t => t.Language == CultureInfo.CurrentUICulture.Name)
-                    .Select(t => t.Name)
+                destination => destination.Name, 
+                source => source.Translations
+                    .Where(translation => translation.Language == CultureInfo.CurrentUICulture.Name)
+                    .Select(translation => translation.Name)
                     .FirstOrDefault()
+            );
+
+        TypeAdapterConfig<Product, ProductResponse>
+            .NewConfig()
+            .Map(
+                destination => destination.Name,
+                source => source.Translations
+                    .Where(translation => translation.Language == CultureInfo.CurrentUICulture.Name)
+                    .Select(translation => translation.Name)
+                    .FirstOrDefault()
+            )
+            .Map(
+                destination => destination.Description,
+                source => source.Translations
+                    .Where(translation => translation.Language == CultureInfo.CurrentUICulture.Name)
+                    .Select(translation => translation.Description)
+                    .FirstOrDefault()
+            )
+            .Map(
+                destination => destination.MainImage,
+                source => $"/Uploads/{source.MainImage}"
             );
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Options;
+using Microsoft.Identity.Client.AppConfig;
 
 namespace KASHOP.PL;
 
@@ -8,6 +9,7 @@ public static class ApplicationBuilderExtension
         this WebApplication app
     )
     {
+        app.UseStaticFiles();
         app.UseRequestLocalization(app.Services.GetRequiredService<IOptions<RequestLocalizationOptions>>().Value);
         MapsterExtension.MapsterServices();
 

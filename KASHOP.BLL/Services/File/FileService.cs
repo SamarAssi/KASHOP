@@ -41,7 +41,12 @@ public class FileService : IFileService
             }
 
             var fileName = Guid.NewGuid().ToString() + extension;
-            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "Uploads", fileName);
+            var filePath = Path.Combine(
+                Directory.GetCurrentDirectory(),
+                "wwwroot",
+                "Uploads", 
+                fileName
+            );
 
             using (var stream = System.IO.File.Create(filePath))
             {

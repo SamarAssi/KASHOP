@@ -1,0 +1,33 @@
+{
+  "Files": [
+    {
+      "Id": "/Users/samarassi/Desktop/BackendDevelopmentCourse/KASHOP/KASHOP.PL/wwwroot/Uploads/d9f2b3ee-9b67-42ad-b788-e56c6817dd46.jpeg",
+      "PackagePath": "staticwebassets/Uploads/d9f2b3ee-9b67-42ad-b788-e56c6817dd46.jpeg"
+    },
+    {
+      "Id": "/Users/samarassi/Desktop/BackendDevelopmentCourse/KASHOP/KASHOP.PL/wwwroot/Uploads/e1464ecd-0e5c-4b6e-8b92-28f3dd79d0dd.jpeg",
+      "PackagePath": "staticwebassets/Uploads/e1464ecd-0e5c-4b6e-8b92-28f3dd79d0dd.jpeg"
+    },
+    {
+      "Id": "obj/Debug/net9.0/staticwebassets/msbuild.KASHOP.PL.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj/Debug/net9.0/staticwebassets/msbuild.KASHOP.PL.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj/Debug/net9.0/staticwebassets/msbuild.build.KASHOP.PL.props",
+      "PackagePath": "build\\KASHOP.PL.props"
+    },
+    {
+      "Id": "obj/Debug/net9.0/staticwebassets/msbuild.buildMultiTargeting.KASHOP.PL.props",
+      "PackagePath": "buildMultiTargeting\\KASHOP.PL.props"
+    },
+    {
+      "Id": "obj/Debug/net9.0/staticwebassets/msbuild.buildTransitive.KASHOP.PL.props",
+      "PackagePath": "buildTransitive\\KASHOP.PL.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

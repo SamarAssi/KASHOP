@@ -27,5 +27,25 @@ namespace MyApp.Namespace
                 Ok(result) : 
                 BadRequest(result);
         }
+
+        [HttpGet("")]
+        public async Task<IActionResult> GetAll()
+        {
+            var result = await _productService.GetAllProducts();
+
+            return result.Success ?
+                Ok(result) :
+                BadRequest(result);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById([FromRoute] int id)
+        {
+            var result = await _productService.GetProduct(product => product.Id == id);
+
+            return result.Success ?
+                Ok(result) :
+                BadRequest(result);
+        }
     }
 }

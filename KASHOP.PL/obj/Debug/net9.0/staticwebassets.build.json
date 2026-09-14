@@ -1,12 +1,228 @@
 {
   "Version": 1,
-  "Hash": "lWdMASA9yCB16ObJkfsVnnYgjdBKbJ7EVGscctvSeK4=",
+  "Hash": "Jsthw1Z3ODNdohtUd+kWgQtkCAOrE4u0jsW3Ip1FOxA=",
   "Source": "KASHOP.PL",
   "BasePath": "_content/KASHOP.PL",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": [],
-  "Endpoints": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "KASHOP.PL/wwwroot",
+      "Source": "KASHOP.PL",
+      "ContentRoot": "/Users/samarassi/Desktop/BackendDevelopmentCourse/KASHOP/KASHOP.PL/wwwroot/",
+      "BasePath": "_content/KASHOP.PL",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "/Users/samarassi/Desktop/BackendDevelopmentCourse/KASHOP/KASHOP.PL/wwwroot/Uploads/d9f2b3ee-9b67-42ad-b788-e56c6817dd46.jpeg",
+      "SourceId": "KASHOP.PL",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/samarassi/Desktop/BackendDevelopmentCourse/KASHOP/KASHOP.PL/wwwroot/",
+      "BasePath": "_content/KASHOP.PL",
+      "RelativePath": "Uploads/d9f2b3ee-9b67-42ad-b788-e56c6817dd46#[.{fingerprint}]?.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "8e27gd3gaq",
+      "Integrity": "IGRzuH9zWju8Eiqc+AIm/v425T728cXQrs1YGUaRDQs=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/Uploads/d9f2b3ee-9b67-42ad-b788-e56c6817dd46.jpeg"
+    },
+    {
+      "Identity": "/Users/samarassi/Desktop/BackendDevelopmentCourse/KASHOP/KASHOP.PL/wwwroot/Uploads/e1464ecd-0e5c-4b6e-8b92-28f3dd79d0dd.jpeg",
+      "SourceId": "KASHOP.PL",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/samarassi/Desktop/BackendDevelopmentCourse/KASHOP/KASHOP.PL/wwwroot/",
+      "BasePath": "_content/KASHOP.PL",
+      "RelativePath": "Uploads/e1464ecd-0e5c-4b6e-8b92-28f3dd79d0dd#[.{fingerprint}]?.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "8e27gd3gaq",
+      "Integrity": "IGRzuH9zWju8Eiqc+AIm/v425T728cXQrs1YGUaRDQs=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/Uploads/e1464ecd-0e5c-4b6e-8b92-28f3dd79d0dd.jpeg"
+    }
+  ],
+  "Endpoints": [
+    {
+      "Route": "Uploads/d9f2b3ee-9b67-42ad-b788-e56c6817dd46.8e27gd3gaq.jpeg",
+      "AssetFile": "/Users/samarassi/Desktop/BackendDevelopmentCourse/KASHOP/KASHOP.PL/wwwroot/Uploads/d9f2b3ee-9b67-42ad-b788-e56c6817dd46.jpeg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "309842"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"IGRzuH9zWju8Eiqc+AIm/v425T728cXQrs1YGUaRDQs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 14 Sep 2026 13:24:54 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "8e27gd3gaq"
+        },
+        {
+          "Name": "label",
+          "Value": "Uploads/d9f2b3ee-9b67-42ad-b788-e56c6817dd46.jpeg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-IGRzuH9zWju8Eiqc+AIm/v425T728cXQrs1YGUaRDQs="
+        }
+      ]
+    },
+    {
+      "Route": "Uploads/d9f2b3ee-9b67-42ad-b788-e56c6817dd46.jpeg",
+      "AssetFile": "/Users/samarassi/Desktop/BackendDevelopmentCourse/KASHOP/KASHOP.PL/wwwroot/Uploads/d9f2b3ee-9b67-42ad-b788-e56c6817dd46.jpeg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "309842"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"IGRzuH9zWju8Eiqc+AIm/v425T728cXQrs1YGUaRDQs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 14 Sep 2026 13:24:54 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-IGRzuH9zWju8Eiqc+AIm/v425T728cXQrs1YGUaRDQs="
+        }
+      ]
+    },
+    {
+      "Route": "Uploads/e1464ecd-0e5c-4b6e-8b92-28f3dd79d0dd.8e27gd3gaq.jpeg",
+      "AssetFile": "/Users/samarassi/Desktop/BackendDevelopmentCourse/KASHOP/KASHOP.PL/wwwroot/Uploads/e1464ecd-0e5c-4b6e-8b92-28f3dd79d0dd.jpeg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "309842"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"IGRzuH9zWju8Eiqc+AIm/v425T728cXQrs1YGUaRDQs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 08 Sep 2026 13:26:37 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "8e27gd3gaq"
+        },
+        {
+          "Name": "label",
+          "Value": "Uploads/e1464ecd-0e5c-4b6e-8b92-28f3dd79d0dd.jpeg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-IGRzuH9zWju8Eiqc+AIm/v425T728cXQrs1YGUaRDQs="
+        }
+      ]
+    },
+    {
+      "Route": "Uploads/e1464ecd-0e5c-4b6e-8b92-28f3dd79d0dd.jpeg",
+      "AssetFile": "/Users/samarassi/Desktop/BackendDevelopmentCourse/KASHOP/KASHOP.PL/wwwroot/Uploads/e1464ecd-0e5c-4b6e-8b92-28f3dd79d0dd.jpeg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "309842"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"IGRzuH9zWju8Eiqc+AIm/v425T728cXQrs1YGUaRDQs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 08 Sep 2026 13:26:37 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-IGRzuH9zWju8Eiqc+AIm/v425T728cXQrs1YGUaRDQs="
+        }
+      ]
+    }
+  ]
 }

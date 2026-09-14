@@ -1,5 +1,7 @@
-﻿using KASHOP.DAL;
+﻿using System.Linq.Expressions;
+using KASHOP.DAL;
 using Mapster;
+using Microsoft.AspNetCore.Components.Forms;
 
 namespace KASHOP.BLL;
 
@@ -42,6 +44,72 @@ public class ProductService : IProductService
             product.MainImage = uploadedResult.Data!;
 
             await _productRepository.CreateAsync(product);
+
+            return new Result<ProductResponse>
+            {
+                Success = true,
+                Message = "Success",
+                Data = product.Adapt<ProductResponse>()
+            };
+        } catch (Exception exception)
+        {
+            return new Result<ProductResponse>
+            {
+                Success = false,
+                Message = exception.InnerException!.Message
+            };
+        }
+    }
+
+    public async Task<Result<List<ProductResponse>>> GetAllProducts()
+    {
+        try
+        {
+            var products = await _productRepository.GetAllAsync(
+                new string[]
+                {
+                    nameof(Product.Translations),
+                    nameof(Product.Category)
+                }
+            );
+
+            return new Result<List<ProductResponse>>
+            {
+                Success = true,
+                Message = "Success",
+                Data = products.Adapt<List<ProductResponse>>()
+            };
+        } catch (Exception exception)
+        {
+            return new Result<List<ProductResponse>>
+            {
+                Success = false,
+                Message = exception.InnerException!.Message
+            };
+        }
+    }
+
+    public async Task<Result<ProductResponse>> GetProduct(Expression<Func<Product, bool>> filter)
+    {
+        try
+        {
+            var product = await _productRepository.GetOneAsync(
+                filter,
+                new string[]
+                {
+                    nameof(Product.Translations),
+                    nameof(Product.Category)
+                }
+            );
+
+            if (product is null)
+            {
+                return new Result<ProductResponse>
+                {
+                    Success = false,
+                    Message = "Product Not Found"
+                };
+            }
 
             return new Result<ProductResponse>
             {

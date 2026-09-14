@@ -1,0 +1,28 @@
+﻿<Project>
+  <ItemGroup>
+    <StaticWebAssetEndpoint Include="_content/KASHOP.PL/Uploads/d9f2b3ee-9b67-42ad-b788-e56c6817dd46.8e27gd3gaq.jpeg">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Uploads\d9f2b3ee-9b67-42ad-b788-e56c6817dd46.jpeg'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"8e27gd3gaq"},{"Name":"integrity","Value":"sha256-IGRzuH9zWju8Eiqc\u002BAIm/v425T728cXQrs1YGUaRDQs="},{"Name":"label","Value":"_content/KASHOP.PL/Uploads/d9f2b3ee-9b67-42ad-b788-e56c6817dd46.jpeg"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"309842"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\u0022IGRzuH9zWju8Eiqc\u002BAIm/v425T728cXQrs1YGUaRDQs=\u0022"},{"Name":"Last-Modified","Value":"Mon, 14 Sep 2026 13:24:54 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/KASHOP.PL/Uploads/d9f2b3ee-9b67-42ad-b788-e56c6817dd46.jpeg">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Uploads\d9f2b3ee-9b67-42ad-b788-e56c6817dd46.jpeg'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-IGRzuH9zWju8Eiqc\u002BAIm/v425T728cXQrs1YGUaRDQs="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"309842"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\u0022IGRzuH9zWju8Eiqc\u002BAIm/v425T728cXQrs1YGUaRDQs=\u0022"},{"Name":"Last-Modified","Value":"Mon, 14 Sep 2026 13:24:54 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/KASHOP.PL/Uploads/e1464ecd-0e5c-4b6e-8b92-28f3dd79d0dd.8e27gd3gaq.jpeg">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Uploads\e1464ecd-0e5c-4b6e-8b92-28f3dd79d0dd.jpeg'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"8e27gd3gaq"},{"Name":"integrity","Value":"sha256-IGRzuH9zWju8Eiqc\u002BAIm/v425T728cXQrs1YGUaRDQs="},{"Name":"label","Value":"_content/KASHOP.PL/Uploads/e1464ecd-0e5c-4b6e-8b92-28f3dd79d0dd.jpeg"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"309842"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\u0022IGRzuH9zWju8Eiqc\u002BAIm/v425T728cXQrs1YGUaRDQs=\u0022"},{"Name":"Last-Modified","Value":"Tue, 08 Sep 2026 13:26:37 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/KASHOP.PL/Uploads/e1464ecd-0e5c-4b6e-8b92-28f3dd79d0dd.jpeg">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Uploads\e1464ecd-0e5c-4b6e-8b92-28f3dd79d0dd.jpeg'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-IGRzuH9zWju8Eiqc\u002BAIm/v425T728cXQrs1YGUaRDQs="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"309842"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\u0022IGRzuH9zWju8Eiqc\u002BAIm/v425T728cXQrs1YGUaRDQs=\u0022"},{"Name":"Last-Modified","Value":"Tue, 08 Sep 2026 13:26:37 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+  </ItemGroup>
+</Project>
