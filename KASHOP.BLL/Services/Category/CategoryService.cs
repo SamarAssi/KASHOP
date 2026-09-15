@@ -36,20 +36,14 @@ public class CategoryService : ICategoryService
                 }
             );
 
-            return new Result<List<CategoryResponse>>
-            {
-                Success = true,
-                Message = "Success",
-                Data = categories.Adapt<List<CategoryResponse>>()
-            };
+            return Result<List<CategoryResponse>>.Ok(
+                "Success",
+                categories.Adapt<List<CategoryResponse>>()
+            );
         }
         catch (Exception exception)
         {
-            return new Result<List<CategoryResponse>>
-            {
-                Success = false,
-                Message = exception.InnerException!.Message,
-            };
+            return Result<List<CategoryResponse>>.Fail(exception.InnerException!.Message);
         }
     }
 
@@ -63,33 +57,24 @@ public class CategoryService : ICategoryService
                 filter,
                 new string[]
                 {
-                    nameof(Category.Translations)
+                    nameof(Category.Translations),
+                    nameof(Category.CreatedBy)
                 }
             );
 
             if (category is null)
             {
-                return new Result<CategoryResponse>
-                {
-                    Success = false,
-                    Message = "Category Not Fount"
-                };
+                return Result<CategoryResponse>.Fail("Category Not Found");
             }
 
-            return new Result<CategoryResponse>
-            {
-                Success = true,
-                Message = "Success",
-                Data = category.Adapt<CategoryResponse>()
-            };
+            return Result<CategoryResponse>.Ok(
+                "Success",
+                category.Adapt<CategoryResponse>()
+            );
         }
         catch (Exception exception)
         {
-            return new Result<CategoryResponse>
-            {
-                Success = false,
-                Message = exception.InnerException!.Message
-            };
+            return Result<CategoryResponse>.Ok(exception.InnerException!.Message);
         }
     }
 
@@ -97,38 +82,15 @@ public class CategoryService : ICategoryService
     {
         try
         {
-            // var user = await _userManager.GetUserAsync(
-            //     _httpContextAccessor.HttpContext?.User
-            // );
-
-            // if (user is null)
-            // {
-            //     return new Result<CategoryResponse>
-            //     {
-            //         Success = false,
-            //         Message = "The authenticated user does not exist. Please log in again."
-            //     };
-            // }
-
             var category = request.Adapt<Category>();
-            //category.CreatedById = user.Id;
 
             await _categoryRepository.CreateAsync(category);
 
-            return new Result<CategoryResponse>
-            {
-                Success = true,
-                Message = "Success",
-                Data = category.Adapt<CategoryResponse>()
-            };
+            return Result<CategoryResponse>.Ok();
         }
         catch (Exception exception)
         {
-            return new Result<CategoryResponse>
-            {
-                Success = false,
-                Message = exception.InnerException!.Message
-            };
+            return Result<CategoryResponse>.Fail(exception.InnerException!.Message);
         }
     }
 
@@ -146,12 +108,7 @@ public class CategoryService : ICategoryService
 
             if (category is null)
             {
-                return new Result<bool>
-                {
-                    Success = false,
-                    Message = "Category Not Found",
-                    Data = false
-                };
+                return Result<bool>.Fail("Category Not Found");
             }
 
             category.Translations = new List<CategoryTranslation>();
@@ -165,20 +122,12 @@ public class CategoryService : ICategoryService
 
             var updated = await _categoryRepository.UpdateAsync(category);
 
-            return new Result<bool>
-            {
-                Success = updated,
-                Message = updated ? "Success" : "Failed to Update Category",
-                Data = updated
-            };
+            return updated ?
+                Result<bool>.Ok() :
+                Result<bool>.Fail("Failed to Update Category");
         } catch(Exception exception)
         {
-            return new Result<bool>
-            {
-                Success = false,
-                Message = exception.InnerException!.Message,
-                Data = false
-            };
+            return Result<bool>.Fail(exception.InnerException!.Message);
         }
     }
 
@@ -192,31 +141,18 @@ public class CategoryService : ICategoryService
 
             if (category is null)
             {
-                return new Result<bool>
-                {
-                    Success = false,
-                    Message = "Category Not Found",
-                    Data = false
-                };
+                return Result<bool>.Fail("Category Not Found");
             }
 
             var deleted = await _categoryRepository.DeleteAsync(category);
 
-            return new Result<bool>
-            {
-                Success = deleted,
-                Message = deleted ? "Success" : "Failed to Delete Category",
-                Data = deleted
-            };
+            return deleted ?
+                Result<bool>.Ok() :
+                Result<bool>.Fail("Failed to Delete Category");
         }
         catch (Exception exception)
         {
-            return new Result<bool>
-            {
-                Success = false,
-                Message = exception.InnerException!.Message,
-                Data = false
-            };
+            return Result<bool>.Fail(exception.InnerException!.Message);
         }
     }
 }

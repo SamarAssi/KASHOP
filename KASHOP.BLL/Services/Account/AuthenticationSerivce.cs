@@ -36,13 +36,10 @@ public class AuthenticationSerivce : IAuthenticationService
 
             if (!result.Succeeded)
             {
-                return new Result<bool>
-                {
-                    Success = false,
-                    Message = "Failed to register user",
-                    Data = false,
-                    Errors = result.Errors.Select(error => error.Description).ToList()
-                };
+                return Result<bool>.Fail(
+                    "Failed to register user",
+                    result.Errors.Select(error => error.Description).ToList()
+                );
             }
 
             var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
@@ -61,21 +58,11 @@ public class AuthenticationSerivce : IAuthenticationService
                 "
             );
 
-            return new Result<bool>
-            {
-                Success = true,
-                Message = "Success",
-                Data = true
-            };
+            return Result<bool>.Ok();
         }
         catch (Exception exception)
         {
-            return new Result<bool>
-            {
-                Success = false,
-                Message = exception.InnerException!.Message,
-                Data = false
-            };
+            return Result<bool>.Fail(exception.InnerException!.Message);
         }
     }
 
@@ -87,33 +74,20 @@ public class AuthenticationSerivce : IAuthenticationService
 
             if (user is null)
             {
-                return new Result<bool>
-                {
-                    Success = false,
-                    Message = "User Not Found",
-                    Data = false
-                };
+                return Result<bool>.Fail("User Not Found");
             }
 
             request.Token = Uri.UnescapeDataString(request.Token);
 
             var result = await _userManager.ConfirmEmailAsync(user, request.Token);
 
-            return new Result<bool>
-            {
-                Success = result.Succeeded,
-                Message = result.Succeeded ? "Success" : "Failed to Confirm Email",
-                Data = result.Succeeded
-            };
+            return result.Succeeded ?
+                Result<bool>.Ok() :
+                Result<bool>.Fail("Failed to Confirm Email");
         }
         catch (Exception exception)
         {
-            return new Result<bool>
-            {
-                Success = false,
-                Message = exception.InnerException!.Message,
-                Data = false
-            };
+            return Result<bool>.Fail(exception.InnerException!.Message);
         }
     }
 
@@ -125,50 +99,32 @@ public class AuthenticationSerivce : IAuthenticationService
 
             if (user is null)
             {
-                return new Result<LoginResponse>
-                {
-                    Success = false,
-                    Message = "Invalid Email"
-                };
+                return Result<LoginResponse>.Fail("Invalid Email");
             }
 
             var isConfirmed = await _userManager.IsEmailConfirmedAsync(user);
 
             if (!isConfirmed)
             {
-                return new Result<LoginResponse>
-                {
-                    Success = isConfirmed,
-                    Message = "Email is not confirmed"
-                };
+                return Result<LoginResponse>.Fail("Email is not confirmed");
             }
 
             var isPasswordValid = await _userManager.CheckPasswordAsync(user, request.Password);
 
             if (!isPasswordValid)
             {
-                return new Result<LoginResponse>
-                {
-                    Success = false,
-                    Message = "Invalid Password"
-                };
+                return Result<LoginResponse>.Fail("Invalid Password");
             }
 
             var token = await GenerateJWT(user);
 
-            return new Result<LoginResponse>
-            {
-                Success = true,
-                Message = "Success",
-                Data = new LoginResponse { AccessToken = token }
-            };
+            return Result<LoginResponse>.Ok(
+                "Success",
+                new LoginResponse { AccessToken = token }
+            );
         } catch (Exception exception)
         {
-            return new Result<LoginResponse>
-            {
-                Success = false,
-                Message = exception.InnerException!.Message
-            };
+            return Result<LoginResponse>.Fail(exception.InnerException!.Message);
         }
     }
 

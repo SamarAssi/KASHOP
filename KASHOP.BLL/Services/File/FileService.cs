@@ -11,33 +11,21 @@ public class FileService : IFileService
     {
         try
         {
-            if (file is null || file.Length <= 0)
+            if (file is null || file.Length == 0)
             {
-                return new Result<string?>
-                {
-                    Success = false,
-                    Message = "No file was provided"
-                };
+                return Result<string?>.Fail("No file was provided");
             }
 
             var extension = Path.GetExtension(file.FileName).ToLower();
 
             if (!_allowedExtensions.Contains(extension))
             {
-                return new Result<string?>
-                {
-                    Success = false,
-                    Message = $"File type {extension} is not allowed"
-                };
+                return Result<string?>.Fail($"File type {extension} is not allowed");
             }
 
             if (file.Length > MaxFileSize)
             {
-                return new Result<string?>
-                {
-                    Success = false,
-                    Message = "File size exceeds the 5MB limit"
-                };
+                return Result<string?>.Fail("File size exceeds the 5MB limit");
             }
 
             var fileName = Guid.NewGuid().ToString() + extension;
@@ -53,19 +41,13 @@ public class FileService : IFileService
                 await file.CopyToAsync(stream);
             }
 
-            return new Result<string?>
-            {
-                Success = true,
-                Message = "Success",
-                Data = fileName
-            };
+            return Result<string?>.Ok(
+                "Success",
+                fileName
+            );
         } catch (Exception exception)
         {
-            return new Result<string?>
-            {
-                Success = false,
-                Message = exception.InnerException!.Message
-            };
+            return Result<string?>.Fail(exception.InnerException!.Message);
         }
     }
 }

@@ -1,5 +1,29 @@
 ﻿<Project>
   <ItemGroup>
+    <StaticWebAssetEndpoint Include="_content/KASHOP.PL/Uploads/3c3c719f-5c46-42f7-ba11-3065941373d3.8e27gd3gaq.jpeg">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Uploads\3c3c719f-5c46-42f7-ba11-3065941373d3.jpeg'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"8e27gd3gaq"},{"Name":"integrity","Value":"sha256-IGRzuH9zWju8Eiqc\u002BAIm/v425T728cXQrs1YGUaRDQs="},{"Name":"label","Value":"_content/KASHOP.PL/Uploads/3c3c719f-5c46-42f7-ba11-3065941373d3.jpeg"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"309842"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\u0022IGRzuH9zWju8Eiqc\u002BAIm/v425T728cXQrs1YGUaRDQs=\u0022"},{"Name":"Last-Modified","Value":"Mon, 14 Sep 2026 14:18:39 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/KASHOP.PL/Uploads/3c3c719f-5c46-42f7-ba11-3065941373d3.jpeg">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Uploads\3c3c719f-5c46-42f7-ba11-3065941373d3.jpeg'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-IGRzuH9zWju8Eiqc\u002BAIm/v425T728cXQrs1YGUaRDQs="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"309842"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\u0022IGRzuH9zWju8Eiqc\u002BAIm/v425T728cXQrs1YGUaRDQs=\u0022"},{"Name":"Last-Modified","Value":"Mon, 14 Sep 2026 14:18:39 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/KASHOP.PL/Uploads/40e7705e-1f8d-4787-b624-d0e475b38673.8e27gd3gaq.jpeg">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Uploads\40e7705e-1f8d-4787-b624-d0e475b38673.jpeg'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"8e27gd3gaq"},{"Name":"integrity","Value":"sha256-IGRzuH9zWju8Eiqc\u002BAIm/v425T728cXQrs1YGUaRDQs="},{"Name":"label","Value":"_content/KASHOP.PL/Uploads/40e7705e-1f8d-4787-b624-d0e475b38673.jpeg"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"309842"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\u0022IGRzuH9zWju8Eiqc\u002BAIm/v425T728cXQrs1YGUaRDQs=\u0022"},{"Name":"Last-Modified","Value":"Mon, 14 Sep 2026 14:04:34 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/KASHOP.PL/Uploads/40e7705e-1f8d-4787-b624-d0e475b38673.jpeg">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Uploads\40e7705e-1f8d-4787-b624-d0e475b38673.jpeg'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-IGRzuH9zWju8Eiqc\u002BAIm/v425T728cXQrs1YGUaRDQs="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"309842"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\u0022IGRzuH9zWju8Eiqc\u002BAIm/v425T728cXQrs1YGUaRDQs=\u0022"},{"Name":"Last-Modified","Value":"Mon, 14 Sep 2026 14:04:34 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/KASHOP.PL/Uploads/d9f2b3ee-9b67-42ad-b788-e56c6817dd46.8e27gd3gaq.jpeg">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Uploads\d9f2b3ee-9b67-42ad-b788-e56c6817dd46.jpeg'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>

@@ -22,22 +22,14 @@ public class ProductService : IProductService
         {
             if (request.MainImage is null)
             {
-                return new Result<ProductResponse>
-                {
-                    Success = false,
-                    Message = "Main image is required"
-                };
+                return Result<ProductResponse>.Fail("Main image is required");
             }
 
             var uploadedResult = await _fileService.UploadAsync(request.MainImage);
 
             if (!uploadedResult.Success)
             {
-                return new Result<ProductResponse>
-                {
-                    Success = false,
-                    Message = uploadedResult.Message
-                };
+                return Result<ProductResponse>.Fail(uploadedResult.Message);
             }
 
             var product = request.Adapt<Product>();
@@ -45,19 +37,10 @@ public class ProductService : IProductService
 
             await _productRepository.CreateAsync(product);
 
-            return new Result<ProductResponse>
-            {
-                Success = true,
-                Message = "Success",
-                Data = product.Adapt<ProductResponse>()
-            };
+            return Result<ProductResponse>.Ok();
         } catch (Exception exception)
         {
-            return new Result<ProductResponse>
-            {
-                Success = false,
-                Message = exception.InnerException!.Message
-            };
+            return Result<ProductResponse>.Fail(exception.InnerException!.Message);
         }
     }
 
@@ -73,19 +56,13 @@ public class ProductService : IProductService
                 }
             );
 
-            return new Result<List<ProductResponse>>
-            {
-                Success = true,
-                Message = "Success",
-                Data = products.Adapt<List<ProductResponse>>()
-            };
+            return Result<List<ProductResponse>>.Ok(
+                "Success",
+                products.Adapt<List<ProductResponse>>()
+            );
         } catch (Exception exception)
         {
-            return new Result<List<ProductResponse>>
-            {
-                Success = false,
-                Message = exception.InnerException!.Message
-            };
+            return Result<List<ProductResponse>>.Fail(exception.InnerException!.Message);
         }
     }
 
@@ -104,26 +81,16 @@ public class ProductService : IProductService
 
             if (product is null)
             {
-                return new Result<ProductResponse>
-                {
-                    Success = false,
-                    Message = "Product Not Found"
-                };
+                return Result<ProductResponse>.Fail("Product Not Found");
             }
 
-            return new Result<ProductResponse>
-            {
-                Success = true,
-                Message = "Success",
-                Data = product.Adapt<ProductResponse>()
-            };
+            return Result<ProductResponse>.Ok(
+                "Success",
+                product.Adapt<ProductResponse>()
+            );
         } catch (Exception exception)
         {
-            return new Result<ProductResponse>
-            {
-                Success = false,
-                Message = exception.InnerException!.Message
-            };
+            return Result<ProductResponse>.Fail(exception.InnerException!.Message);
         }
     }
 }

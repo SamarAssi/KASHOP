@@ -1,6 +1,14 @@
 {
   "Files": [
     {
+      "Id": "/Users/samarassi/Desktop/BackendDevelopmentCourse/KASHOP/KASHOP.PL/wwwroot/Uploads/3c3c719f-5c46-42f7-ba11-3065941373d3.jpeg",
+      "PackagePath": "staticwebassets/Uploads/3c3c719f-5c46-42f7-ba11-3065941373d3.jpeg"
+    },
+    {
+      "Id": "/Users/samarassi/Desktop/BackendDevelopmentCourse/KASHOP/KASHOP.PL/wwwroot/Uploads/40e7705e-1f8d-4787-b624-d0e475b38673.jpeg",
+      "PackagePath": "staticwebassets/Uploads/40e7705e-1f8d-4787-b624-d0e475b38673.jpeg"
+    },
+    {
       "Id": "/Users/samarassi/Desktop/BackendDevelopmentCourse/KASHOP/KASHOP.PL/wwwroot/Uploads/d9f2b3ee-9b67-42ad-b788-e56c6817dd46.jpeg",
       "PackagePath": "staticwebassets/Uploads/d9f2b3ee-9b67-42ad-b788-e56c6817dd46.jpeg"
     },
