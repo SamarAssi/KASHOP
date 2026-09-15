@@ -29,103 +29,83 @@ public class AuthenticationSerivce : IAuthenticationService
 
     public async Task<Result<bool>> Register(RegisterRequest request)
     {
-        try
+        var user = request.Adapt<ApplicationUser>();
+        var result = await _userManager.CreateAsync(user, request.Password);
+
+        if (!result.Succeeded)
         {
-            var user = request.Adapt<ApplicationUser>();
-            var result = await _userManager.CreateAsync(user, request.Password);
+            return Result<bool>.Fail(
+                "Failed to register user",
+                result.Errors.Select(error => error.Description).ToList()
+            );
+        }
 
-            if (!result.Succeeded)
-            {
-                return Result<bool>.Fail(
-                    "Failed to register user",
-                    result.Errors.Select(error => error.Description).ToList()
-                );
-            }
+        var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+        token = Uri.EscapeDataString(token);
 
-            var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-            token = Uri.EscapeDataString(token);
+        var emailUrl = $"http://localhost:5270/api/Account/ConfirmEmail?token={token}&UserId={user.Id}";
 
-            var emailUrl = $"http://localhost:5270/api/Account/ConfirmEmail?token={token}&UserId={user.Id}";
-
-            await _emailSender.SendEmailAsync(
-                email: request.Email,
-                subject: "Confirm Email",
-                message: $@"
+        await _emailSender.SendEmailAsync(
+            email: request.Email,
+            subject: "Confirm Email",
+            message: $@"
                     <div>
                         <h2>Welcome</h2>
                         <a href='{emailUrl}'>Confirm</a>
                     </div>
                 "
-            );
+        );
 
-            return Result<bool>.Ok();
-        }
-        catch (Exception exception)
-        {
-            return Result<bool>.Fail(exception.InnerException!.Message);
-        }
+        return Result<bool>.Ok();
     }
 
     public async Task<Result<bool>> ConfirmEmail(ConfirmEmailRequest request)
     {
-        try
+        var user = await _userManager.FindByIdAsync(request.UserId);
+
+        if (user is null)
         {
-            var user = await _userManager.FindByIdAsync(request.UserId);
-
-            if (user is null)
-            {
-                return Result<bool>.Fail("User Not Found");
-            }
-
-            request.Token = Uri.UnescapeDataString(request.Token);
-
-            var result = await _userManager.ConfirmEmailAsync(user, request.Token);
-
-            return result.Succeeded ?
-                Result<bool>.Ok() :
-                Result<bool>.Fail("Failed to Confirm Email");
+            return Result<bool>.Fail("User Not Found");
         }
-        catch (Exception exception)
-        {
-            return Result<bool>.Fail(exception.InnerException!.Message);
-        }
+
+        request.Token = Uri.UnescapeDataString(request.Token);
+
+        var result = await _userManager.ConfirmEmailAsync(user, request.Token);
+
+        return result.Succeeded ?
+            Result<bool>.Ok() :
+            Result<bool>.Fail("Failed to Confirm Email");
     }
 
     public async Task<Result<LoginResponse>> Login(LoginRequest request)
     {
-        try
+        var user = await _userManager.FindByEmailAsync(request.Email);
+
+        if (user is null)
         {
-            var user = await _userManager.FindByEmailAsync(request.Email);
-
-            if (user is null)
-            {
-                return Result<LoginResponse>.Fail("Invalid Email");
-            }
-
-            var isConfirmed = await _userManager.IsEmailConfirmedAsync(user);
-
-            if (!isConfirmed)
-            {
-                return Result<LoginResponse>.Fail("Email is not confirmed");
-            }
-
-            var isPasswordValid = await _userManager.CheckPasswordAsync(user, request.Password);
-
-            if (!isPasswordValid)
-            {
-                return Result<LoginResponse>.Fail("Invalid Password");
-            }
-
-            var token = await GenerateJWT(user);
-
-            return Result<LoginResponse>.Ok(
-                "Success",
-                new LoginResponse { AccessToken = token }
-            );
-        } catch (Exception exception)
-        {
-            return Result<LoginResponse>.Fail(exception.InnerException!.Message);
+            return Result<LoginResponse>.Fail("Invalid Email");
         }
+
+        var isConfirmed = await _userManager.IsEmailConfirmedAsync(user);
+
+        if (!isConfirmed)
+        {
+            return Result<LoginResponse>.Fail("Email is not confirmed");
+        }
+
+        var isPasswordValid = await _userManager.CheckPasswordAsync(user, request.Password);
+
+        if (!isPasswordValid)
+        {
+            return Result<LoginResponse>.Fail("Invalid Password");
+        }
+
+        var token = await GenerateJWT(user);
+
+        return Result<LoginResponse>.Ok(
+            "Success",
+            new LoginResponse { AccessToken = token }
+        );
     }
 
     private async Task<string> GenerateJWT(ApplicationUser user)

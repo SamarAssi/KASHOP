@@ -9,6 +9,7 @@ public static class ApplicationBuilderExtension
         this WebApplication app
     )
     {
+        app.UseExceptionHandler();
         app.UseStaticFiles();
         app.UseRequestLocalization(app.Services.GetRequiredService<IOptions<RequestLocalizationOptions>>().Value);
         MapsterExtension.MapsterServices();

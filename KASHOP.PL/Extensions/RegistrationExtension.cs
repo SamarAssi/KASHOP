@@ -10,6 +10,7 @@ public static class RegistrationExtension
         this IServiceCollection services
     )
     {
+        services.AddExceptionHandler<GlobalExceptionHandler>();
         services.AddScoped<IProductRepository, ProductRepository>();
         services.AddScoped<IProductService, ProductService>();
         services.AddScoped<ICategoryRepository, CategoryRepository>();
@@ -18,6 +19,7 @@ public static class RegistrationExtension
         services.AddScoped<ISeedData, RoleSeedData>();
         services.AddScoped<IFileService, FileService>();
         services.AddTransient<IEmailSender, EmailSender>();
+        services.AddProblemDetails();
 
         return services;
     }
