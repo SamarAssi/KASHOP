@@ -25,6 +25,10 @@
       "PackagePath": "staticwebassets/Uploads/e1464ecd-0e5c-4b6e-8b92-28f3dd79d0dd.jpeg"
     },
     {
+      "Id": "/Users/samarassi/Desktop/BackendDevelopmentCourse/KASHOP/KASHOP.PL/wwwroot/Uploads/fdcf413c-aa4f-48d5-92b6-4729d46bbbde.jpeg",
+      "PackagePath": "staticwebassets/Uploads/fdcf413c-aa4f-48d5-92b6-4729d46bbbde.jpeg"
+    },
+    {
       "Id": "obj/Debug/net9.0/staticwebassets/msbuild.KASHOP.PL.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
     },

@@ -6,6 +6,7 @@ public class Product : AuditLog
     public decimal Price { get; set; }
     public decimal Discount { get; set; }
     public string MainImage { get; set; } = null!;
+    public string MainImagePublicId { get; set; } = null!;
     public int Quantity { get; set; }
     public double Rate { get; set; }
     public int CategoryId { get; set; }

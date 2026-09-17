@@ -34,7 +34,8 @@ public class ProductService : IProductService
         }
 
         var product = request.Adapt<Product>();
-        product.MainImage = uploadedResult.Data!;
+        product.MainImage = uploadedResult.Data.Url;
+        product.MainImagePublicId = uploadedResult.Data.PublicId;
 
         await _unitOfWork.ProductRepository.CreateAsync(product);
         await _unitOfWork.CompleteAsync();
@@ -78,5 +79,32 @@ public class ProductService : IProductService
             "Success",
             product.Adapt<ProductResponse>()
         );
+    }
+
+    public async Task<Result<bool>> DeleteProduct(int id)
+    {
+        var product = await _unitOfWork.ProductRepository.GetOneAsync(
+            p => p.Id == id
+        );
+
+        if (product is null)
+        {
+            return Result<bool>.Fail("Product Not Found");
+        }
+
+        var deletedImageResult = await _fileService.Delete(product.MainImagePublicId);
+
+        if (!deletedImageResult.Success)
+        {
+            return Result<bool>.Fail($"{deletedImageResult.Message}");
+        }
+
+        _unitOfWork.ProductRepository.DeleteAsync(product);
+
+        var affectedRows = await _unitOfWork.CompleteAsync();
+
+        return affectedRows > 0 ?
+            Result<bool>.Ok() :
+            Result<bool>.Fail("Failed to delete product");
     }
 }
