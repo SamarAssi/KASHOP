@@ -11,9 +11,8 @@ public static class RegistrationExtension
     )
     {
         services.AddExceptionHandler<GlobalExceptionHandler>();
-        services.AddScoped<IProductRepository, ProductRepository>();
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped<IProductService, ProductService>();
-        services.AddScoped<ICategoryRepository, CategoryRepository>();
         services.AddScoped<ICategoryService, CategoryService>();
         services.AddScoped<IAuthenticationService, AuthenticationSerivce>();
         services.AddScoped<ISeedData, RoleSeedData>();

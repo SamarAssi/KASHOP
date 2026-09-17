@@ -9,18 +9,18 @@ namespace KASHOP.BLL;
 
 public class CategoryService : ICategoryService
 {
-    private readonly ICategoryRepository _categoryRepository;
+    private readonly IUnitOfWork _unitOfWork;
 
     public CategoryService(
-        ICategoryRepository categoryRepository
+        IUnitOfWork unitOfWork
     )
     {
-        _categoryRepository = categoryRepository;
+        _unitOfWork = unitOfWork;
     }
 
     public async Task<Result<List<CategoryResponse>>> GetAllCategories()
     {
-        var categories = await _categoryRepository.GetAllAsync(
+        var categories = await _unitOfWork.CategoryRepository.GetAllAsync(
             new string[]
             {
                     nameof(Category.Translations),
@@ -38,7 +38,7 @@ public class CategoryService : ICategoryService
         Expression<Func<Category, bool>> filter
     )
     {
-        var category = await _categoryRepository.GetOneAsync(
+        var category = await _unitOfWork.CategoryRepository.GetOneAsync(
             filter,
             new string[]
             {
@@ -62,14 +62,15 @@ public class CategoryService : ICategoryService
     {
         var category = request.Adapt<Category>();
 
-        await _categoryRepository.CreateAsync(category);
+        await _unitOfWork.CategoryRepository.CreateAsync(category);
+        await _unitOfWork.CompleteAsync();
 
         return Result<CategoryResponse>.Ok();
     }
 
     public async Task<Result<bool>> UpdateCategory(int id, CategoryRequest request)
     {
-        var category = await _categoryRepository.GetOneAsync(
+        var category = await _unitOfWork.CategoryRepository.GetOneAsync(
             category => category.Id == id,
             new string[]
             {
@@ -91,16 +92,17 @@ public class CategoryService : ICategoryService
             category.Translations.Add(translation);
         }
 
-        var updated = await _categoryRepository.UpdateAsync(category);
+        _unitOfWork.CategoryRepository.UpdateAsync(category);
+        var affectedRows = await _unitOfWork.CompleteAsync();
 
-        return updated ?
+        return affectedRows > 0 ?
             Result<bool>.Ok() :
             Result<bool>.Fail("Failed to Update Category");
     }
 
     public async Task<Result<bool>> DeleteCategory(int id)
     {
-        var category = await _categoryRepository.GetOneAsync(
+        var category = await _unitOfWork.CategoryRepository.GetOneAsync(
             category => category.Id == id
         );
 
@@ -109,9 +111,10 @@ public class CategoryService : ICategoryService
             return Result<bool>.Fail("Category Not Found");
         }
 
-        var deleted = await _categoryRepository.DeleteAsync(category);
+        _unitOfWork.CategoryRepository.DeleteAsync(category);
+        var affectedRows = await _unitOfWork.CompleteAsync();
 
-        return deleted ?
+        return affectedRows > 0 ?
             Result<bool>.Ok() :
             Result<bool>.Fail("Failed to Delete Category");
     }

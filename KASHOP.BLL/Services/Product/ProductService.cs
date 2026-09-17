@@ -7,12 +7,15 @@ namespace KASHOP.BLL;
 
 public class ProductService : IProductService
 {
-    private readonly IProductRepository _productRepository;
+    private readonly IUnitOfWork _unitOfWork;
     private readonly IFileService _fileService;
 
-    public ProductService(IProductRepository productRepository, IFileService fileService)
+    public ProductService(
+        IUnitOfWork unitOfWork, 
+        IFileService fileService
+    )
     {
-        _productRepository = productRepository;
+        _unitOfWork = unitOfWork;
         _fileService = fileService;
     }
 
@@ -33,14 +36,15 @@ public class ProductService : IProductService
         var product = request.Adapt<Product>();
         product.MainImage = uploadedResult.Data!;
 
-        await _productRepository.CreateAsync(product);
+        await _unitOfWork.ProductRepository.CreateAsync(product);
+        await _unitOfWork.CompleteAsync();
 
         return Result<ProductResponse>.Ok();
     }
 
     public async Task<Result<List<ProductResponse>>> GetAllProducts()
     {
-        var products = await _productRepository.GetAllAsync(
+        var products = await _unitOfWork.ProductRepository.GetAllAsync(
             new string[]
             {
                     nameof(Product.Translations),
@@ -56,7 +60,7 @@ public class ProductService : IProductService
 
     public async Task<Result<ProductResponse>> GetProduct(Expression<Func<Product, bool>> filter)
     {
-        var product = await _productRepository.GetOneAsync(
+        var product = await _unitOfWork.ProductRepository.GetOneAsync(
             filter,
             new string[]
             {
