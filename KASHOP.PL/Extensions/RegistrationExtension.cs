@@ -12,6 +12,7 @@ public static class RegistrationExtension
     {
         services.AddExceptionHandler<GlobalExceptionHandler>();
         services.AddScoped<IUnitOfWork, UnitOfWork>();
+        services.AddScoped<ICartService, CartService>();
         services.AddScoped<IProductService, ProductService>();
         services.AddScoped<ICategoryService, CategoryService>();
         services.AddScoped<IAuthenticationService, AuthenticationSerivce>();

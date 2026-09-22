@@ -6,6 +6,7 @@ public class UnitOfWork : IUnitOfWork
     private readonly ApplicationDbContext _context;
     private ICategoryRepository? _categoryRepository;
     private IProductRepository? _productRepository;
+    private ICartRepository? _cartRepository;
     public ICategoryRepository CategoryRepository 
     { 
         get
@@ -28,6 +29,18 @@ public class UnitOfWork : IUnitOfWork
             }
 
             return _productRepository;
+        }
+    }
+    public ICartRepository CartRepository
+    {
+        get
+        {
+            if (_cartRepository is null)
+            {
+                _cartRepository = new CartRepository(_context);
+            }
+
+            return _cartRepository;
         }
     }
 
