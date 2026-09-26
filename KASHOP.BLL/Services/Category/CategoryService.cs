@@ -21,11 +21,11 @@ public class CategoryService : ICategoryService
     public async Task<Result<List<CategoryResponse>>> GetAllCategories()
     {
         var categories = await _unitOfWork.CategoryRepository.GetAllAsync(
-            new string[]
-            {
-                    nameof(Category.Translations),
-                    nameof(Category.CreatedBy)
-            }
+            includes:
+            [
+                nameof(Category.Translations),
+                nameof(Category.CreatedBy)
+            ]
         );
 
         return Result<List<CategoryResponse>>.Ok(
@@ -40,11 +40,10 @@ public class CategoryService : ICategoryService
     {
         var category = await _unitOfWork.CategoryRepository.GetOneAsync(
             filter,
-            new string[]
-            {
-                    nameof(Category.Translations),
-                    nameof(Category.CreatedBy)
-            }
+            [
+                nameof(Category.Translations),
+                nameof(Category.CreatedBy)
+            ]
         );
 
         if (category is null)
@@ -72,10 +71,9 @@ public class CategoryService : ICategoryService
     {
         var category = await _unitOfWork.CategoryRepository.GetOneAsync(
             category => category.Id == id,
-            new string[]
-            {
-                    nameof(Category.Translations)
-            }
+            [
+                nameof(Category.Translations)
+            ]
         );
 
         if (category is null)

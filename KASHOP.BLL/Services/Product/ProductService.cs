@@ -46,11 +46,11 @@ public class ProductService : IProductService
     public async Task<Result<List<ProductResponse>>> GetAllProducts()
     {
         var products = await _unitOfWork.ProductRepository.GetAllAsync(
-            new string[]
-            {
-                    nameof(Product.Translations),
-                    nameof(Product.Category)
-            }
+            includes:
+            [
+                nameof(Product.Translations),
+                nameof(Product.Category)
+            ]
         );
 
         return Result<List<ProductResponse>>.Ok(
@@ -63,11 +63,10 @@ public class ProductService : IProductService
     {
         var product = await _unitOfWork.ProductRepository.GetOneAsync(
             filter,
-            new string[]
-            {
-                    nameof(Product.Translations),
-                    nameof(Product.Category)
-            }
+            [
+                nameof(Product.Translations),
+                nameof(Product.Category)
+            ]
         );
 
         if (product is null)

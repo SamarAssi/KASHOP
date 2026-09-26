@@ -34,5 +34,39 @@ namespace MyApp.Namespace
                 Ok(result) :
                 BadRequest(result);
         }
+
+        [HttpGet("")]
+        public async Task<IActionResult> GetCart()
+        {
+            var result = await _cartService.GetCart(CurrentUserId);
+
+            return result.Success ?
+                Ok(result) :
+                BadRequest(result);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteItem([FromRoute] int id)
+        {
+            var result = await _cartService.RemoveFromCart(CurrentUserId, id);
+
+            return result.Success ?
+                Ok(result) :
+                BadRequest(result);
+        }
+
+        [HttpPut("")]
+        public async Task<IActionResult> UpdateItem([FromBody] CartItemRequest request)
+        {
+            var result = await _cartService.UpdateQuantity(
+                CurrentUserId, 
+                request.ProductId, 
+                request.Count
+            );
+
+            return result.Success ?
+                Ok(result) :
+                BadRequest(result);
+        }
     }
 }

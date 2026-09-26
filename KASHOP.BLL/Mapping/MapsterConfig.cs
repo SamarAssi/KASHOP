@@ -42,5 +42,23 @@ public static class MapsterConfig
                 destination => destination.MainImage,
                 source => $"/Uploads/{source.MainImage}"
             );
+
+            TypeAdapterConfig<CartItem, CartItemResponse>
+                .NewConfig()
+                .Map(
+                    destination => destination.ProductName,
+                    source => source.Product.Translations
+                        .Where(translation => translation.Language == CultureInfo.CurrentUICulture.Name)
+                        .Select(translation => translation.Name)
+                        .FirstOrDefault()
+                )
+                .Map(
+                    destination => destination.Price,
+                    source => source.Product.Price
+                )
+                .Map(
+                    destination => destination.MainImage,
+                    source => source.Product.MainImage
+                );
     }
 }
