@@ -90,7 +90,8 @@ public class CategoryService : ICategoryService
             category.Translations.Add(translation);
         }
 
-        _unitOfWork.CategoryRepository.UpdateAsync(category);
+        _unitOfWork.CategoryRepository.Update(category);
+        
         var affectedRows = await _unitOfWork.CompleteAsync();
 
         return affectedRows > 0 ?
@@ -109,7 +110,8 @@ public class CategoryService : ICategoryService
             return Result<bool>.Fail("Category Not Found");
         }
 
-        _unitOfWork.CategoryRepository.DeleteAsync(category);
+        _unitOfWork.CategoryRepository.Delete(category);
+
         var affectedRows = await _unitOfWork.CompleteAsync();
 
         return affectedRows > 0 ?

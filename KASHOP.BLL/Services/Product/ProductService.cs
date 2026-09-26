@@ -98,7 +98,7 @@ public class ProductService : IProductService
             return Result<bool>.Fail($"{deletedImageResult.Message}");
         }
 
-        _unitOfWork.ProductRepository.DeleteAsync(product);
+        _unitOfWork.ProductRepository.Delete(product);
 
         var affectedRows = await _unitOfWork.CompleteAsync();
 

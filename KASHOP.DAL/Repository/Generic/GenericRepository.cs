@@ -59,13 +59,18 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
         return entity;
     }
 
-    public void UpdateAsync(T entity)
+    public void Update(T entity)
     {
         _context.Update(entity);
     }
 
-    public void DeleteAsync(T entity)
+    public void Delete(T entity)
     {
         _context.Remove(entity);
+    }
+
+    public void DeleteRange(IEnumerable<T> entities)
+    {
+        _context.RemoveRange(entities);
     }
 }

@@ -68,5 +68,15 @@ namespace MyApp.Namespace
                 Ok(result) :
                 BadRequest(result);
         }
+
+        [HttpDelete]
+        public async Task<IActionResult> DeleteCart()
+        {
+            var result = await _cartService.ClearCart(CurrentUserId);
+
+            return result.Success ?
+                Ok(result) :
+                BadRequest(result);
+        }
     }
 }

@@ -84,7 +84,7 @@ public class CartService : ICartService
             return Result<bool>.Fail("Cart Item Not Found");
         }
 
-        _unitOfWork.CartRepository.DeleteAsync(cartItem);
+        _unitOfWork.CartRepository.Delete(cartItem);
 
         var affectedRows = await _unitOfWork.CompleteAsync();
 
@@ -120,5 +120,25 @@ public class CartService : ICartService
         return affectedRows > 0 ?
             Result<bool>.Ok() :
             Result<bool>.Fail("Failed to Update Quantity");
+    }
+
+    public async Task<Result<bool>> ClearCart(string userId)
+    {
+        var userCart = await _unitOfWork.CartRepository.GetAllAsync(
+            cart => cart.UserId == userId
+        );
+
+        if (!userCart.Any())
+        {
+            return Result<bool>.Fail("User doesn't have a cart");
+        }
+
+        _unitOfWork.CartRepository.DeleteRange(userCart);
+
+        var affectedRows = await _unitOfWork.CompleteAsync();
+
+        return affectedRows > 0 ?
+            Result<bool>.Ok() :
+            Result<bool>.Fail("Unable to clear the cart");
     }
 }
